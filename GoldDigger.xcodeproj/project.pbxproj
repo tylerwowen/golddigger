@@ -1,0 +1,509 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2F73B4A91C33A7C200C78204 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73B4A81C33A7C200C78204 /* AppDelegate.swift */; };
+		2F73B4AB1C33A7C200C78204 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73B4AA1C33A7C200C78204 /* FirstViewController.swift */; };
+		2F73B4AD1C33A7C200C78204 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73B4AC1C33A7C200C78204 /* SecondViewController.swift */; };
+		2F73B4B01C33A7C200C78204 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F73B4AE1C33A7C200C78204 /* Main.storyboard */; };
+		2F73B4B21C33A7C200C78204 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F73B4B11C33A7C200C78204 /* Assets.xcassets */; };
+		2F73B4B51C33A7C200C78204 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F73B4B31C33A7C200C78204 /* LaunchScreen.storyboard */; };
+		2F73B4C01C33A7C200C78204 /* GoldDiggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73B4BF1C33A7C200C78204 /* GoldDiggerTests.swift */; };
+		2F73B4CB1C33A7C200C78204 /* GoldDiggerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73B4CA1C33A7C200C78204 /* GoldDiggerUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2F73B4BC1C33A7C200C78204 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2F73B49D1C33A7C200C78204 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2F73B4A41C33A7C200C78204;
+			remoteInfo = GoldDigger;
+		};
+		2F73B4C71C33A7C200C78204 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2F73B49D1C33A7C200C78204 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2F73B4A41C33A7C200C78204;
+			remoteInfo = GoldDigger;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2F73B4A51C33A7C200C78204 /* GoldDigger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoldDigger.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F73B4A81C33A7C200C78204 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2F73B4AA1C33A7C200C78204 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		2F73B4AC1C33A7C200C78204 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		2F73B4AF1C33A7C200C78204 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2F73B4B11C33A7C200C78204 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2F73B4B41C33A7C200C78204 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2F73B4B61C33A7C200C78204 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2F73B4BB1C33A7C200C78204 /* GoldDiggerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoldDiggerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F73B4BF1C33A7C200C78204 /* GoldDiggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldDiggerTests.swift; sourceTree = "<group>"; };
+		2F73B4C11C33A7C200C78204 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2F73B4C61C33A7C200C78204 /* GoldDiggerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoldDiggerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F73B4CA1C33A7C200C78204 /* GoldDiggerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldDiggerUITests.swift; sourceTree = "<group>"; };
+		2F73B4CC1C33A7C200C78204 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2F73B4A21C33A7C200C78204 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F73B4B81C33A7C200C78204 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F73B4C31C33A7C200C78204 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2F73B49C1C33A7C200C78204 = {
+			isa = PBXGroup;
+			children = (
+				2F73B4A71C33A7C200C78204 /* GoldDigger */,
+				2F73B4BE1C33A7C200C78204 /* GoldDiggerTests */,
+				2F73B4C91C33A7C200C78204 /* GoldDiggerUITests */,
+				2F73B4A61C33A7C200C78204 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2F73B4A61C33A7C200C78204 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2F73B4A51C33A7C200C78204 /* GoldDigger.app */,
+				2F73B4BB1C33A7C200C78204 /* GoldDiggerTests.xctest */,
+				2F73B4C61C33A7C200C78204 /* GoldDiggerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2F73B4A71C33A7C200C78204 /* GoldDigger */ = {
+			isa = PBXGroup;
+			children = (
+				2F73B4A81C33A7C200C78204 /* AppDelegate.swift */,
+				2F73B4AA1C33A7C200C78204 /* FirstViewController.swift */,
+				2F73B4AC1C33A7C200C78204 /* SecondViewController.swift */,
+				2F73B4AE1C33A7C200C78204 /* Main.storyboard */,
+				2F73B4B11C33A7C200C78204 /* Assets.xcassets */,
+				2F73B4B31C33A7C200C78204 /* LaunchScreen.storyboard */,
+				2F73B4B61C33A7C200C78204 /* Info.plist */,
+			);
+			path = GoldDigger;
+			sourceTree = "<group>";
+		};
+		2F73B4BE1C33A7C200C78204 /* GoldDiggerTests */ = {
+			isa = PBXGroup;
+			children = (
+				2F73B4BF1C33A7C200C78204 /* GoldDiggerTests.swift */,
+				2F73B4C11C33A7C200C78204 /* Info.plist */,
+			);
+			path = GoldDiggerTests;
+			sourceTree = "<group>";
+		};
+		2F73B4C91C33A7C200C78204 /* GoldDiggerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2F73B4CA1C33A7C200C78204 /* GoldDiggerUITests.swift */,
+				2F73B4CC1C33A7C200C78204 /* Info.plist */,
+			);
+			path = GoldDiggerUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2F73B4A41C33A7C200C78204 /* GoldDigger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F73B4CF1C33A7C200C78204 /* Build configuration list for PBXNativeTarget "GoldDigger" */;
+			buildPhases = (
+				2F73B4A11C33A7C200C78204 /* Sources */,
+				2F73B4A21C33A7C200C78204 /* Frameworks */,
+				2F73B4A31C33A7C200C78204 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GoldDigger;
+			productName = GoldDigger;
+			productReference = 2F73B4A51C33A7C200C78204 /* GoldDigger.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2F73B4BA1C33A7C200C78204 /* GoldDiggerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F73B4D21C33A7C200C78204 /* Build configuration list for PBXNativeTarget "GoldDiggerTests" */;
+			buildPhases = (
+				2F73B4B71C33A7C200C78204 /* Sources */,
+				2F73B4B81C33A7C200C78204 /* Frameworks */,
+				2F73B4B91C33A7C200C78204 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2F73B4BD1C33A7C200C78204 /* PBXTargetDependency */,
+			);
+			name = GoldDiggerTests;
+			productName = GoldDiggerTests;
+			productReference = 2F73B4BB1C33A7C200C78204 /* GoldDiggerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2F73B4C51C33A7C200C78204 /* GoldDiggerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F73B4D51C33A7C200C78204 /* Build configuration list for PBXNativeTarget "GoldDiggerUITests" */;
+			buildPhases = (
+				2F73B4C21C33A7C200C78204 /* Sources */,
+				2F73B4C31C33A7C200C78204 /* Frameworks */,
+				2F73B4C41C33A7C200C78204 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2F73B4C81C33A7C200C78204 /* PBXTargetDependency */,
+			);
+			name = GoldDiggerUITests;
+			productName = GoldDiggerUITests;
+			productReference = 2F73B4C61C33A7C200C78204 /* GoldDiggerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2F73B49D1C33A7C200C78204 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Tyler Ouyang";
+				TargetAttributes = {
+					2F73B4A41C33A7C200C78204 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					2F73B4BA1C33A7C200C78204 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 2F73B4A41C33A7C200C78204;
+					};
+					2F73B4C51C33A7C200C78204 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 2F73B4A41C33A7C200C78204;
+					};
+				};
+			};
+			buildConfigurationList = 2F73B4A01C33A7C200C78204 /* Build configuration list for PBXProject "GoldDigger" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2F73B49C1C33A7C200C78204;
+			productRefGroup = 2F73B4A61C33A7C200C78204 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2F73B4A41C33A7C200C78204 /* GoldDigger */,
+				2F73B4BA1C33A7C200C78204 /* GoldDiggerTests */,
+				2F73B4C51C33A7C200C78204 /* GoldDiggerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2F73B4A31C33A7C200C78204 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F73B4B51C33A7C200C78204 /* LaunchScreen.storyboard in Resources */,
+				2F73B4B21C33A7C200C78204 /* Assets.xcassets in Resources */,
+				2F73B4B01C33A7C200C78204 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F73B4B91C33A7C200C78204 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F73B4C41C33A7C200C78204 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2F73B4A11C33A7C200C78204 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F73B4AD1C33A7C200C78204 /* SecondViewController.swift in Sources */,
+				2F73B4A91C33A7C200C78204 /* AppDelegate.swift in Sources */,
+				2F73B4AB1C33A7C200C78204 /* FirstViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F73B4B71C33A7C200C78204 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F73B4C01C33A7C200C78204 /* GoldDiggerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F73B4C21C33A7C200C78204 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F73B4CB1C33A7C200C78204 /* GoldDiggerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2F73B4BD1C33A7C200C78204 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2F73B4A41C33A7C200C78204 /* GoldDigger */;
+			targetProxy = 2F73B4BC1C33A7C200C78204 /* PBXContainerItemProxy */;
+		};
+		2F73B4C81C33A7C200C78204 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2F73B4A41C33A7C200C78204 /* GoldDigger */;
+			targetProxy = 2F73B4C71C33A7C200C78204 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2F73B4AE1C33A7C200C78204 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F73B4AF1C33A7C200C78204 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2F73B4B31C33A7C200C78204 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F73B4B41C33A7C200C78204 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2F73B4CD1C33A7C200C78204 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2F73B4CE1C33A7C200C78204 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2F73B4D01C33A7C200C78204 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = GoldDigger/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = TO.GoldDigger;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2F73B4D11C33A7C200C78204 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = GoldDigger/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = TO.GoldDigger;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		2F73B4D31C33A7C200C78204 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = GoldDiggerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = TO.GoldDiggerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GoldDigger.app/GoldDigger";
+			};
+			name = Debug;
+		};
+		2F73B4D41C33A7C200C78204 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = GoldDiggerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = TO.GoldDiggerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GoldDigger.app/GoldDigger";
+			};
+			name = Release;
+		};
+		2F73B4D61C33A7C200C78204 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = GoldDiggerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = TO.GoldDiggerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = GoldDigger;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		2F73B4D71C33A7C200C78204 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = GoldDiggerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = TO.GoldDiggerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = GoldDigger;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2F73B4A01C33A7C200C78204 /* Build configuration list for PBXProject "GoldDigger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F73B4CD1C33A7C200C78204 /* Debug */,
+				2F73B4CE1C33A7C200C78204 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2F73B4CF1C33A7C200C78204 /* Build configuration list for PBXNativeTarget "GoldDigger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F73B4D01C33A7C200C78204 /* Debug */,
+				2F73B4D11C33A7C200C78204 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2F73B4D21C33A7C200C78204 /* Build configuration list for PBXNativeTarget "GoldDiggerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F73B4D31C33A7C200C78204 /* Debug */,
+				2F73B4D41C33A7C200C78204 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2F73B4D51C33A7C200C78204 /* Build configuration list for PBXNativeTarget "GoldDiggerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F73B4D61C33A7C200C78204 /* Debug */,
+				2F73B4D71C33A7C200C78204 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2F73B49D1C33A7C200C78204 /* Project object */;
+}
