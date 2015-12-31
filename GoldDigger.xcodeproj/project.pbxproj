@@ -9,12 +9,16 @@
 /* Begin PBXBuildFile section */
 		2F73B4A91C33A7C200C78204 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73B4A81C33A7C200C78204 /* AppDelegate.swift */; };
 		2F73B4AB1C33A7C200C78204 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73B4AA1C33A7C200C78204 /* FirstViewController.swift */; };
-		2F73B4AD1C33A7C200C78204 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73B4AC1C33A7C200C78204 /* SecondViewController.swift */; };
 		2F73B4B01C33A7C200C78204 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F73B4AE1C33A7C200C78204 /* Main.storyboard */; };
 		2F73B4B21C33A7C200C78204 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F73B4B11C33A7C200C78204 /* Assets.xcassets */; };
 		2F73B4B51C33A7C200C78204 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F73B4B31C33A7C200C78204 /* LaunchScreen.storyboard */; };
 		2F73B4C01C33A7C200C78204 /* GoldDiggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73B4BF1C33A7C200C78204 /* GoldDiggerTests.swift */; };
 		2F73B4CB1C33A7C200C78204 /* GoldDiggerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73B4CA1C33A7C200C78204 /* GoldDiggerUITests.swift */; };
+		2FC476291C33B603000E2EF0 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC476281C33B603000E2EF0 /* SettingViewController.swift */; };
+		2FC4762B1C33C1FF000E2EF0 /* GoldLoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC4762A1C33C1FF000E2EF0 /* GoldLoginHelper.swift */; };
+		2FFB44E01C33C7D70081D59A /* GoldLoginHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFB44DF1C33C7D70081D59A /* GoldLoginHelperTests.swift */; };
+		8C3AD633E60456AB47D1E54F /* Pods_GoldDiggerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF071FED33D221610278438 /* Pods_GoldDiggerTests.framework */; };
+		949B335C2350AA35DDFA6E8B /* Pods_GoldDigger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CC4EF2E3D040001908A6B4E /* Pods_GoldDigger.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0DF071FED33D221610278438 /* Pods_GoldDiggerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoldDiggerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C5E7D9863BB66FD45A5D06C /* Pods-GoldDiggerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoldDiggerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoldDiggerTests/Pods-GoldDiggerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2F73B4A51C33A7C200C78204 /* GoldDigger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoldDigger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F73B4A81C33A7C200C78204 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F73B4AA1C33A7C200C78204 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		2F73B4AC1C33A7C200C78204 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		2F73B4AF1C33A7C200C78204 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2F73B4B11C33A7C200C78204 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F73B4B41C33A7C200C78204 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +54,17 @@
 		2F73B4C61C33A7C200C78204 /* GoldDiggerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoldDiggerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F73B4CA1C33A7C200C78204 /* GoldDiggerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldDiggerUITests.swift; sourceTree = "<group>"; };
 		2F73B4CC1C33A7C200C78204 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2FC476281C33B603000E2EF0 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		2FC4762A1C33C1FF000E2EF0 /* GoldLoginHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoldLoginHelper.swift; sourceTree = "<group>"; };
+		2FFB44DF1C33C7D70081D59A /* GoldLoginHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoldLoginHelperTests.swift; sourceTree = "<group>"; };
+		2FFB44E11C33E7460081D59A /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
+		2FFB44E31C33E75E0081D59A /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		2FFB44E61C33E7990081D59A /* libresolv.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.9.tbd; path = usr/lib/libresolv.9.tbd; sourceTree = SDKROOT; };
+		2FFB44E81C33E7A20081D59A /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		4495B91A2E37EA1846DD7664 /* Pods-GoldDigger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoldDigger.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoldDigger/Pods-GoldDigger.debug.xcconfig"; sourceTree = "<group>"; };
+		4CC4EF2E3D040001908A6B4E /* Pods_GoldDigger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoldDigger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0CF8530784FBDB817B9F995 /* Pods-GoldDiggerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoldDiggerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoldDiggerTests/Pods-GoldDiggerTests.release.xcconfig"; sourceTree = "<group>"; };
+		C5C4103ED4F7628F39248335 /* Pods-GoldDigger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoldDigger.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoldDigger/Pods-GoldDigger.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				949B335C2350AA35DDFA6E8B /* Pods_GoldDigger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C3AD633E60456AB47D1E54F /* Pods_GoldDiggerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +101,8 @@
 				2F73B4BE1C33A7C200C78204 /* GoldDiggerTests */,
 				2F73B4C91C33A7C200C78204 /* GoldDiggerUITests */,
 				2F73B4A61C33A7C200C78204 /* Products */,
+				77DC1C6B7E97A8B61A3084FB /* Pods */,
+				DF2A01FB670EECDB07D1EBA1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,7 +121,8 @@
 			children = (
 				2F73B4A81C33A7C200C78204 /* AppDelegate.swift */,
 				2F73B4AA1C33A7C200C78204 /* FirstViewController.swift */,
-				2F73B4AC1C33A7C200C78204 /* SecondViewController.swift */,
+				2FC476281C33B603000E2EF0 /* SettingViewController.swift */,
+				2FC4762A1C33C1FF000E2EF0 /* GoldLoginHelper.swift */,
 				2F73B4AE1C33A7C200C78204 /* Main.storyboard */,
 				2F73B4B11C33A7C200C78204 /* Assets.xcassets */,
 				2F73B4B31C33A7C200C78204 /* LaunchScreen.storyboard */,
@@ -113,6 +134,7 @@
 		2F73B4BE1C33A7C200C78204 /* GoldDiggerTests */ = {
 			isa = PBXGroup;
 			children = (
+				2FFB44DF1C33C7D70081D59A /* GoldLoginHelperTests.swift */,
 				2F73B4BF1C33A7C200C78204 /* GoldDiggerTests.swift */,
 				2F73B4C11C33A7C200C78204 /* Info.plist */,
 			);
@@ -128,6 +150,30 @@
 			path = GoldDiggerUITests;
 			sourceTree = "<group>";
 		};
+		77DC1C6B7E97A8B61A3084FB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4495B91A2E37EA1846DD7664 /* Pods-GoldDigger.debug.xcconfig */,
+				C5C4103ED4F7628F39248335 /* Pods-GoldDigger.release.xcconfig */,
+				2C5E7D9863BB66FD45A5D06C /* Pods-GoldDiggerTests.debug.xcconfig */,
+				C0CF8530784FBDB817B9F995 /* Pods-GoldDiggerTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DF2A01FB670EECDB07D1EBA1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2FFB44E81C33E7A20081D59A /* libresolv.tbd */,
+				2FFB44E61C33E7990081D59A /* libresolv.9.tbd */,
+				2FFB44E31C33E75E0081D59A /* libxml2.tbd */,
+				2FFB44E11C33E7460081D59A /* libxml2.2.tbd */,
+				4CC4EF2E3D040001908A6B4E /* Pods_GoldDigger.framework */,
+				0DF071FED33D221610278438 /* Pods_GoldDiggerTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +181,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2F73B4CF1C33A7C200C78204 /* Build configuration list for PBXNativeTarget "GoldDigger" */;
 			buildPhases = (
+				77776F7141B815344D294565 /* Check Pods Manifest.lock */,
 				2F73B4A11C33A7C200C78204 /* Sources */,
 				2F73B4A21C33A7C200C78204 /* Frameworks */,
 				2F73B4A31C33A7C200C78204 /* Resources */,
+				C4C8C6F8D09C8D231E11A995 /* Embed Pods Frameworks */,
+				21E17F9EC3ACF598486C7A63 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,9 +201,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2F73B4D21C33A7C200C78204 /* Build configuration list for PBXNativeTarget "GoldDiggerTests" */;
 			buildPhases = (
+				01C8CCD8E0B9002C6EF0BEA6 /* Check Pods Manifest.lock */,
 				2F73B4B71C33A7C200C78204 /* Sources */,
 				2F73B4B81C33A7C200C78204 /* Frameworks */,
 				2F73B4B91C33A7C200C78204 /* Resources */,
+				E9B18521ED771B48FA31AB55 /* Embed Pods Frameworks */,
+				4551B24202F757CC488C7CE0 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -196,6 +248,7 @@
 				TargetAttributes = {
 					2F73B4A41C33A7C200C78204 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = F5S48SAJAU;
 					};
 					2F73B4BA1C33A7C200C78204 = {
 						CreatedOnToolsVersion = 7.2;
@@ -254,14 +307,108 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		01C8CCD8E0B9002C6EF0BEA6 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		21E17F9EC3ACF598486C7A63 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GoldDigger/Pods-GoldDigger-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4551B24202F757CC488C7CE0 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GoldDiggerTests/Pods-GoldDiggerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		77776F7141B815344D294565 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C4C8C6F8D09C8D231E11A995 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GoldDigger/Pods-GoldDigger-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E9B18521ED771B48FA31AB55 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GoldDiggerTests/Pods-GoldDiggerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2F73B4A11C33A7C200C78204 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F73B4AD1C33A7C200C78204 /* SecondViewController.swift in Sources */,
 				2F73B4A91C33A7C200C78204 /* AppDelegate.swift in Sources */,
 				2F73B4AB1C33A7C200C78204 /* FirstViewController.swift in Sources */,
+				2FC476291C33B603000E2EF0 /* SettingViewController.swift in Sources */,
+				2FC4762B1C33C1FF000E2EF0 /* GoldLoginHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F73B4C01C33A7C200C78204 /* GoldDiggerTests.swift in Sources */,
+				2FFB44E01C33C7D70081D59A /* GoldLoginHelperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,7 +500,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -390,7 +538,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -399,9 +547,14 @@
 		};
 		2F73B4D01C33A7C200C78204 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4495B91A2E37EA1846DD7664 /* Pods-GoldDigger.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = GoldDigger/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TO.GoldDigger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -410,9 +563,14 @@
 		};
 		2F73B4D11C33A7C200C78204 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5C4103ED4F7628F39248335 /* Pods-GoldDigger.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = GoldDigger/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TO.GoldDigger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -421,8 +579,10 @@
 		};
 		2F73B4D31C33A7C200C78204 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C5E7D9863BB66FD45A5D06C /* Pods-GoldDiggerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = GoldDiggerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TO.GoldDiggerTests;
@@ -433,8 +593,10 @@
 		};
 		2F73B4D41C33A7C200C78204 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0CF8530784FBDB817B9F995 /* Pods-GoldDiggerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = GoldDiggerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TO.GoldDiggerTests;
@@ -446,6 +608,7 @@
 		2F73B4D61C33A7C200C78204 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				INFOPLIST_FILE = GoldDiggerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TO.GoldDiggerUITests;
@@ -458,6 +621,7 @@
 		2F73B4D71C33A7C200C78204 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				INFOPLIST_FILE = GoldDiggerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TO.GoldDiggerUITests;
@@ -486,6 +650,7 @@
 				2F73B4D11C33A7C200C78204 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2F73B4D21C33A7C200C78204 /* Build configuration list for PBXNativeTarget "GoldDiggerTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +659,7 @@
 				2F73B4D41C33A7C200C78204 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2F73B4D51C33A7C200C78204 /* Build configuration list for PBXNativeTarget "GoldDiggerUITests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +668,7 @@
 				2F73B4D71C33A7C200C78204 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
