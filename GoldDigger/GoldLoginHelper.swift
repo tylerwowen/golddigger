@@ -6,22 +6,20 @@
 //  Copyright © 2015 Tyler Ouyang. All rights reserved.
 //
 
-import UIKit
 import Alamofire
+import Bolts
 import Kanna
+import UIKit
 
-enum credentialKeys {
-  static let netID = "netIDKey", password = "passwordKey"
-}
-
-var requestKeys = [
+private let requestKeys = [
   "__LASTFOCUS", "__VIEWSTATE", "__VIEWSTATEGENERATOR", "__EVENTTARGET", "__EVENTARGUMENT",
   "__EVENTVALIDATION", "ctl00$pageContent$userNameText", "ctl00$pageContent$passwordText",
   "ctl00$pageContent$loginButton.x", "ctl00$pageContent$loginButton.y",
   "ctl00$pageContent$PermPinLogin$userNameText", "ctl00$pageContent$PermPinLogin$passwordText"]
 
-typealias successHandler = () -> Void
-typealias failureHandler = (NSError?) -> Void
+enum credentialKeys {
+  static let netID = "netIDKey", password = "passwordKey"
+}
 
 class GoldLoginHelper: NSObject {
   
@@ -93,7 +91,7 @@ class GoldLoginHelper: NSObject {
       .responseData { response in
         
         if response.result.isSuccess {
-          let parameters = self.getParametersFromHTML(response.data!)
+          let parameters = self.assembleRequestData(response.data!)
           
           Alamofire.request(.POST, url, parameters:parameters)
             .responseData { response in
@@ -115,22 +113,11 @@ class GoldLoginHelper: NSObject {
     }
   }
   
-  func getParametersFromHTML(html: NSData) -> [String: AnyObject]{
-    return assembleUserInfo(extractLoginData(html))
-  }
-  
-  func extractLoginData(html: NSData) -> [String: AnyObject]{
-    if let doc = Kanna.HTML(html: html, encoding: NSUTF8StringEncoding) {
-      
-      var parameters = Dictionary<String, AnyObject>()
-      for var i = 0; i < 6; i++ {
-        let key = requestKeys[i]
-        let value = doc.at_css("#" + key)?["value"]
-        parameters[key] = value != nil ? value : ""
-      }
-      return parameters
-    }
-    return ["":""]
+  func assembleRequestData(html: NSData) -> [String: AnyObject]{
+    let parser = PrameterParser()
+    let parameters = Array(requestKeys[0..<6])
+    let paramDict = parser.extractParameters(parameters, fromHTML: html)
+    return assembleUserInfo(paramDict)
   }
   
   func assembleUserInfo(var parameters:[String: AnyObject]) -> [String: AnyObject]{

@@ -12,8 +12,11 @@ class SettingViewController: UITableViewController, UITextFieldDelegate {
   
   @IBOutlet weak var netIDTextField: UITextField!
   @IBOutlet weak var passwordTextField: UITextField!
+  @IBOutlet weak var passNotificationSwitch: UISwitch!
   
   let loginHelper = GoldLoginHelper.sharedInstance
+  let scheduler = NotificationScheduler()
+  let registerInfo = RegistrationInfoProcessor()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -52,10 +55,32 @@ class SettingViewController: UITableViewController, UITextFieldDelegate {
   }
   
   func loginSuccessHandler() {
-    let alert = UIAlertController(title: "Congrats!", message: "Login succeeded", preferredStyle: UIAlertControllerStyle.Alert)
-    let defaultAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+    showDefaultAlert("Congrats!", message: "Login succeeded", actionTitle: "OK")
+  }
+  
+  func showDefaultAlert(title: String, message: String, actionTitle: String) {
+    let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+    let defaultAction = UIAlertAction(title: actionTitle, style: UIAlertActionStyle.Default, handler: nil)
     alert.addAction(defaultAction)
     self.presentViewController(alert, animated: true, completion: nil)
+  }
+  
+  @IBAction func passNotificationToggled(sender: UISwitch) {
+    if sender.on == true {
+      registerInfo.getAllPassTime { (dates, error) -> Void in
+        if error == nil {
+          self.scheduler.createNotificationFor(dates: dates as! [NSDate])
+          self.showDefaultAlert("Congrats", message: "Your pass notification is set", actionTitle: "Good")
+        }
+        else {
+          self.showDefaultAlert("Sorry", message: "Not able to get your pass time", actionTitle: "OK")
+          sender.setOn(false, animated: true)
+        }
+      }
+    }
+    else {
+      
+    }
   }
   
   /*
