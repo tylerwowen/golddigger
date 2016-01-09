@@ -17,10 +17,11 @@
 		2F82431D1C40ACC200E2986A /* ScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82431C1C40ACC200E2986A /* ScheduleTableViewController.swift */; };
 		2F82431F1C40AE0800E2986A /* GDClassSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82431E1C40AE0800E2986A /* GDClassSchedule.swift */; };
 		2F8243211C40B52C00E2986A /* GDClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8243201C40B52C00E2986A /* GDClass.swift */; };
-		2F8243241C40DA9200E2986A /* GDBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8243231C40DA9200E2986A /* GDBaseClass.swift */; };
 		2F8243271C40E0BF00E2986A /* GDQuarterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8243261C40E0BF00E2986A /* GDQuarterManager.swift */; };
 		2F82432B1C40E8F700E2986A /* GDQuarterMangerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82432A1C40E8F700E2986A /* GDQuarterMangerTests.swift */; };
 		2F82432D1C40EB3400E2986A /* GDQuarter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82432C1C40EB3400E2986A /* GDQuarter.swift */; };
+		2F82432F1C42FF6900E2986A /* GDPageRequesterr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82432E1C42FF6900E2986A /* GDPageRequesterr.swift */; };
+		2F8243311C430A7100E2986A /* GDClassScheduleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8243301C430A7100E2986A /* GDClassScheduleTests.swift */; };
 		2FC103F51C34DF2E001D5FA0 /* GDRegistrationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC103F41C34DF2E001D5FA0 /* GDRegistrationInfo.swift */; };
 		2FC103F71C34E26E001D5FA0 /* GDRegistrationInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC103F61C34E26E001D5FA0 /* GDRegistrationInfoTests.swift */; };
 		2FC103F91C34E9ED001D5FA0 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC103F81C34E9ED001D5FA0 /* Common.swift */; };
@@ -67,10 +68,11 @@
 		2F82431C1C40ACC200E2986A /* ScheduleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewController.swift; sourceTree = "<group>"; };
 		2F82431E1C40AE0800E2986A /* GDClassSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDClassSchedule.swift; sourceTree = "<group>"; };
 		2F8243201C40B52C00E2986A /* GDClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDClass.swift; sourceTree = "<group>"; };
-		2F8243231C40DA9200E2986A /* GDBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDBaseClass.swift; sourceTree = "<group>"; };
 		2F8243261C40E0BF00E2986A /* GDQuarterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDQuarterManager.swift; sourceTree = "<group>"; };
 		2F82432A1C40E8F700E2986A /* GDQuarterMangerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDQuarterMangerTests.swift; sourceTree = "<group>"; };
 		2F82432C1C40EB3400E2986A /* GDQuarter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDQuarter.swift; sourceTree = "<group>"; };
+		2F82432E1C42FF6900E2986A /* GDPageRequesterr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDPageRequesterr.swift; sourceTree = "<group>"; };
+		2F8243301C430A7100E2986A /* GDClassScheduleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDClassScheduleTests.swift; sourceTree = "<group>"; };
 		2FC103F41C34DF2E001D5FA0 /* GDRegistrationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDRegistrationInfo.swift; sourceTree = "<group>"; };
 		2FC103F61C34E26E001D5FA0 /* GDRegistrationInfoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDRegistrationInfoTests.swift; sourceTree = "<group>"; };
 		2FC103F81C34E9ED001D5FA0 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
@@ -203,7 +205,6 @@
 		2F8243221C40B53300E2986A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2F8243231C40DA9200E2986A /* GDBaseClass.swift */,
 				2F8243201C40B52C00E2986A /* GDClass.swift */,
 				2F82432C1C40EB3400E2986A /* GDQuarter.swift */,
 			);
@@ -214,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				2F49BF681C37C11F00DD8B32 /* GDPrameterParser.swift */,
+				2F82432E1C42FF6900E2986A /* GDPageRequesterr.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -225,6 +227,7 @@
 				2FC103F61C34E26E001D5FA0 /* GDRegistrationInfoTests.swift */,
 				2FFB44DF1C33C7D70081D59A /* GDAccountManagerTests.swift */,
 				2F82432A1C40E8F700E2986A /* GDQuarterMangerTests.swift */,
+				2F8243301C430A7100E2986A /* GDClassScheduleTests.swift */,
 			);
 			name = GoldAPI;
 			sourceTree = "<group>";
@@ -498,8 +501,8 @@
 				2F82431F1C40AE0800E2986A /* GDClassSchedule.swift in Sources */,
 				2F82432D1C40EB3400E2986A /* GDQuarter.swift in Sources */,
 				2FC103F91C34E9ED001D5FA0 /* Common.swift in Sources */,
-				2F8243241C40DA9200E2986A /* GDBaseClass.swift in Sources */,
 				2F49BF691C37C11F00DD8B32 /* GDPrameterParser.swift in Sources */,
+				2F82432F1C42FF6900E2986A /* GDPageRequesterr.swift in Sources */,
 				2FC476291C33B603000E2EF0 /* SettingViewController.swift in Sources */,
 				2FC4762B1C33C1FF000E2EF0 /* GDAccountManager.swift in Sources */,
 				2F8243211C40B52C00E2986A /* GDClass.swift in Sources */,
@@ -513,6 +516,7 @@
 			files = (
 				2FC103F71C34E26E001D5FA0 /* GDRegistrationInfoTests.swift in Sources */,
 				2F82432B1C40E8F700E2986A /* GDQuarterMangerTests.swift in Sources */,
+				2F8243311C430A7100E2986A /* GDClassScheduleTests.swift in Sources */,
 				2FFB44E01C33C7D70081D59A /* GDAccountManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -6,6 +6,7 @@
 //  Copyright © 2016 Tyler Ouyang. All rights reserved.
 //
 
+import Bolts
 import Kanna
 import UIKit
 
@@ -16,6 +17,20 @@ class GDQuarterManager: NSObject {
   
   static let currentCSS = "#pageContent_quarterDropDown [selected]"
   static let latestCSS = "#pageContent_quarterDropDown option:nth-child(2)"
+  
+  func fetchCurrentQuarter(onComplete completeBlock: completeHandler?) {
+    let registrationInfo = GDRegistrationInfo.sharedInstance
+    registrationInfo.currentQuarter().continueWithBlock { (task: BFTask!) -> AnyObject? in
+      if task.error != nil {
+        if completeBlock != nil {completeBlock!(nil, task.error)}
+      }
+      else if task.result != nil {
+        if completeBlock != nil {completeBlock!(task.result, nil)}
+      }
+      return nil
+    }
+  }
+  
   // MARK: - Class methods
   
   class func assembleRequestData(parameterKeys: [String], htmlData: NSData) -> [String: AnyObject] {

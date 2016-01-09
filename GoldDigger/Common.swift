@@ -8,7 +8,11 @@
 
 import Foundation
 
-
+extension String {
+  func trim() -> String {
+    return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+  }
+}
 
 typealias SuccessBlock = (AnyObject?) -> Void
 typealias SuccessBlockNil = () -> Void

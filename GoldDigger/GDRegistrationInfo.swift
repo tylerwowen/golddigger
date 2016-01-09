@@ -48,7 +48,7 @@ class GDRegistrationInfo: NSObject {
   var passTimeArr = Array<NSDate>()
   
   func passTimeOfLatestQuarter(onComplete completeBlock: completeHandler?) {
-    getHTMLOfLatestQuarter().continueWithBlock { (task) -> AnyObject? in
+    getHTMLOfLatestQuarter().continueWithBlock { (task: BFTask!) -> AnyObject? in
       if task.error != nil {
         if completeBlock != nil {completeBlock!(nil, task.error)}
       }
@@ -60,7 +60,7 @@ class GDRegistrationInfo: NSObject {
   }
   
   func lastDayToDrop(onComplete completeBlock: completeHandler?) {
-    getDefaultHTML().continueWithBlock { (task) -> AnyObject? in
+    getDefaultHTML().continueWithBlock { (task: BFTask!) -> AnyObject? in
       if task.error != nil {
         if completeBlock != nil {completeBlock!(nil, task.error)}
       }
@@ -71,36 +71,32 @@ class GDRegistrationInfo: NSObject {
     }
   }
   
-  func currentQuarter(onComplete completeBlock: completeHandler?) {
-    getDefaultHTML().continueWithBlock { (task) -> AnyObject? in
+  func currentQuarter() -> BFTask {
+    let newTask = BFTaskCompletionSource()
+    getHTMLOfLatestQuarter().continueWithBlock { (task: BFTask!) -> AnyObject? in
       if task.error != nil {
-        if completeBlock != nil {completeBlock!(nil, task.error)}
+        newTask.setError(task.error!)
       }
-      else if task.result != nil {
-        if completeBlock != nil {completeBlock!(self.decorateQuarter(withData: self.currentQuaterData!, andCSS: GDQuarterManager.currentCSS), nil)}
+      else {
+        newTask.setResult(self.decorateQuarter(withData: self.currentQuaterData!, andCSS: GDQuarterManager.latestCSS))
       }
       return nil
     }
+    return newTask.task
   }
   
-  func latestQuarter(onComplete completeBlock: completeHandler?) {
-    getHTMLOfLatestQuarter().continueWithBlock { (task) -> AnyObject? in
+  func latestQuarter() -> BFTask {
+    let newTask = BFTaskCompletionSource()
+    getHTMLOfLatestQuarter().continueWithBlock { (task: BFTask!) -> AnyObject? in
       if task.error != nil {
-        if completeBlock != nil {completeBlock!(nil, task.error)}
+        newTask.setError(task.error!)
       }
-      else if task.result != nil {
-        if completeBlock != nil {completeBlock!(self.decorateQuarter(withData: self.latestQuaterData!, andCSS: GDQuarterManager.latestCSS), nil)}
+      else {
+        newTask.setResult(self.decorateQuarter(withData: self.latestQuaterData!, andCSS: GDQuarterManager.latestCSS))
       }
       return nil
     }
-  }
-  
-  func decorateQuarter(withData data: NSData, andCSS css: String) -> GDQuarter? {
-    let quarter = GDQuarter()
-    quarter.start = parseDateForId(QuarterInfoIdDs.start, withData: data)
-    quarter.end = parseDateForId(QuarterInfoIdDs.end, withData: data)
-    quarter.name = GDQuarterManager.findQuarterName(withHtmlData: data, andCSS: css)
-    return quarter
+    return newTask.task
   }
   
   // MARK: - Networking request
@@ -120,7 +116,9 @@ class GDRegistrationInfo: NSObject {
           return self.getDefaultHTML()
         })
       }
-      return task
+      else {
+        return task
+      }
       }.continueWithSuccessBlock { (task: BFTask!) -> AnyObject? in
         // Store html data
         self.currentQuaterData = (task.result as! NSData)
@@ -148,7 +146,10 @@ class GDRegistrationInfo: NSObject {
     }
     Alamofire.request(.GET, rootURL)
       .responseData { response in
-        if response.response!.URL!.path!.containsString("RegistrationInfo.aspx") {
+        if response.result.error != nil {
+          task.setError(response.result.error!)
+        }
+        else if response.response!.URL!.path!.containsString("RegistrationInfo.aspx") {
           task.setResult(response.data)
         }
         else {
@@ -163,7 +164,10 @@ class GDRegistrationInfo: NSObject {
     let task = BFTaskCompletionSource()
     Alamofire.request(.POST, rootURL, parameters: GDQuarterManager.assembleRequestData(parameterKeys, htmlData: currentQuaterData!))
       .responseData { response in
-        if response.data != nil && GDQuarterManager.isCurentLatest(response.data!) {
+        if response.result.error != nil {
+          task.setError(response.result.error!)
+        }
+        else if response.data != nil && GDQuarterManager.isCurentLatest(response.data!) {
           self.latestQuaterData = response.data
           task.setResult(response.data)
         }
@@ -176,7 +180,7 @@ class GDRegistrationInfo: NSObject {
   }
   
   
-  // MARK: - Utils
+  // MARK: - Parsing
   
   func getPassTimeArr() -> [NSDate] {
     if passTimeArr.count != 0 {
@@ -192,7 +196,7 @@ class GDRegistrationInfo: NSObject {
     if let doc = Kanna.HTML(html: latestQuaterData!, encoding: NSUTF8StringEncoding) {
       
       var dateString = doc.at_css(passIDs[number]!)?.text
-      dateString = dateString?.componentsSeparatedByString("-")[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+      dateString = dateString?.componentsSeparatedByString("-")[0].trim()
       
       if dateString != nil {
         let dateFormatter = NSDateFormatter()
@@ -218,5 +222,11 @@ class GDRegistrationInfo: NSObject {
     return nil
   }
   
-  
+  func decorateQuarter(withData data: NSData, andCSS css: String) -> GDQuarter? {
+    let quarter = GDQuarter()
+    quarter.start = parseDateForId(QuarterInfoIdDs.start, withData: data)
+    quarter.end = parseDateForId(QuarterInfoIdDs.end, withData: data)
+    quarter.name = GDQuarterManager.findQuarterName(withHtmlData: data, andCSS: css)
+    return quarter
+  }
 }
