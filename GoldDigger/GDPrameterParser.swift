@@ -1,5 +1,5 @@
 //
-//  PrameterParser.swift
+//  GDPrameterParser.swift
 //  GoldDigger
 //
 //  Created by Tyler Weimin Ouyang on 1/2/16.
@@ -9,7 +9,7 @@
 import Kanna
 import UIKit
 
-class PrameterParser: NSObject {
+class GDPrameterParser: NSObject {
   
   func extractParameters(parameters: [String], fromHTML html: NSData) -> [String: AnyObject]{
     if let doc = Kanna.HTML(html: html, encoding: NSUTF8StringEncoding) {

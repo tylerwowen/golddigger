@@ -1,5 +1,5 @@
 //
-//  GoldLoginHelper.swift
+//  GDLoginHelper.swift
 //  GoldDigger
 //
 //  Created by Tyler Weimin Ouyang on 12/29/15.
@@ -21,13 +21,15 @@ enum credentialKeys {
   static let netID = "netIDKey", password = "passwordKey"
 }
 
-class GoldLoginHelper: NSObject {
+class GDLoginHelper: NSObject {
   
   /// Singleton instance
-  static let sharedInstance = GoldLoginHelper()
+  static let sharedInstance = GDLoginHelper()
   
   /// NSUserDefaults reference
   let userCredentials = NSUserDefaults.standardUserDefaults()
+  
+  let rootURL = "https://my.sa.ucsb.edu/gold/Login.aspx"
   
   /// Indicates if user credentials are valid
   var valid = false
@@ -67,7 +69,7 @@ class GoldLoginHelper: NSObject {
     userCredentials.synchronize()
   }
   
-   /**
+  /**
    Log in to GOLD with provided credentials
    
    - parameter netId:    GOLD NetID
@@ -76,45 +78,70 @@ class GoldLoginHelper: NSObject {
    - parameter failureBlock: failure block, called when log in failed
    */
   func login(netID netID: String, password: String,
-    onSuccess successBlock: successHandler?,
-    onFail failureBlock: failureHandler?) {
+    onSuccess successBlock: SuccessBlockNil?,
+    onFail failureBlock: failureHandler?) -> BFTask {
       
-    self.netID = netID
-    self.password = password
-    login(onSuccess: successBlock, onFail: failureBlock)
+      self.netID = netID
+      self.password = password
+      return login(onSuccess: successBlock, onFail: failureBlock)
   }
   
-  func login(onSuccess successBlock: successHandler?, onFail failureBlock: failureHandler?) {
-    
-    let url = "https://my.sa.ucsb.edu/gold/Login.aspx"
-    Alamofire.request(.GET, url)
+  func login(onSuccess successBlock: SuccessBlockNil?, onFail failureBlock: failureHandler?) -> BFTask {
+    return downloadLoginPage(rootURL).continueWithSuccessBlock {
+      (task: BFTask!) -> BFTask in
+      let parameters = task.result as! [String: AnyObject]
+      return self.loginWithParameters(parameters)
+    }.continueWithBlock {
+      (task: BFTask!) -> AnyObject? in
+      if (task.error != nil) {
+        if failureBlock != nil {failureBlock!(task.error)}
+      }
+      else {
+        self.valid = true
+        if successBlock != nil {successBlock!()}
+      }
+      return task
+    }
+  }
+
+  func loginWithParameters(parameters: [String: AnyObject]) -> BFTask {
+    let task = BFTaskCompletionSource()
+    Alamofire.request(.POST, rootURL, parameters: parameters)
       .responseData { response in
-        
-        if response.result.isSuccess {
-          let parameters = self.assembleRequestData(response.data!)
-          
-          Alamofire.request(.POST, url, parameters:parameters)
-            .responseData { response in
-              
-              if response.response!.URL!.path!.containsString("Home.aspx") {
-                self.valid = true
-                if successBlock != nil {successBlock!()}
-              }
-              else if response.result.isSuccess {
-                let error = NSError(domain: "GoldDigger", code: 1, userInfo: nil)
-                if failureBlock != nil {failureBlock!(error)}
-                self.valid = false
-              }
-              else {
-                if failureBlock != nil {failureBlock!(response.result.error)}
-              }
-          }
+        if response.response!.URL!.path!.containsString("Home.aspx") {
+          task.setResult(nil)
+        }
+        else if response.result.isSuccess {
+          let error = NSError(domain: "GoldDigger", code: 1, userInfo: nil)
+          task.setError(error)
+        }
+        else {
+          task.setError(response.result.error!)
         }
     }
+    return task.task
+  }
+  
+  func logout() {
+    Alamofire.request(.GET, "https://my.sa.ucsb.edu/gold/Logout.aspx")
+  }
+  
+  func downloadLoginPage(url: String) -> BFTask {
+    let task = BFTaskCompletionSource()
+    Alamofire.request(.GET, url)
+      .responseData { response in
+        if response.result.isSuccess {
+          task.setResult(self.assembleRequestData(response.data!))
+        } else {
+          let error = NSError(domain: "GoldDigger", code: 0, userInfo: nil)
+          task.setError(error)
+        }
+    }
+    return task.task
   }
   
   func assembleRequestData(html: NSData) -> [String: AnyObject]{
-    let parser = PrameterParser()
+    let parser = GDPrameterParser()
     let parameters = Array(requestKeys[0..<6])
     let paramDict = parser.extractParameters(parameters, fromHTML: html)
     return assembleUserInfo(paramDict)

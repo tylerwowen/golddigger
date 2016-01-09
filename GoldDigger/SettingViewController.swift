@@ -8,26 +8,33 @@
 
 import UIKit
 
+enum SettingsKey {
+  static let notification = "locNotiKey", autoRegistration = "autoRegKey"
+}
+
+
 class SettingViewController: UITableViewController, UITextFieldDelegate {
   
   @IBOutlet weak var netIDTextField: UITextField!
   @IBOutlet weak var passwordTextField: UITextField!
   @IBOutlet weak var passNotificationSwitch: UISwitch!
   
-  let loginHelper = GoldLoginHelper.sharedInstance
+  let loginHelper = GDLoginHelper.sharedInstance
   let scheduler = NotificationScheduler()
-  let registerInfo = RegistrationInfoProcessor()
-  
+  let userSettings = NSUserDefaults.standardUserDefaults()
+
   override func viewDidLoad() {
     super.viewDidLoad()
     
     netIDTextField.text = loginHelper.netID
     passwordTextField.text = loginHelper.password
+    
+    restoreSettings()
   }
   
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+  func restoreSettings() {
+    let isNotificationOn = userSettings.valueForKey(SettingsKey.notification) as! Bool
+    passNotificationSwitch.setOn(isNotificationOn, animated: false)
   }
   
   // MARK: - Table view data source
@@ -39,6 +46,8 @@ class SettingViewController: UITableViewController, UITextFieldDelegate {
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return 2
   }
+  
+  // MARK: - Login
   
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     if textField == netIDTextField {
@@ -65,22 +74,40 @@ class SettingViewController: UITableViewController, UITextFieldDelegate {
     self.presentViewController(alert, animated: true, completion: nil)
   }
   
+  // MARK: - Settings
+  
   @IBAction func passNotificationToggled(sender: UISwitch) {
     if sender.on == true {
-      registerInfo.getAllPassTime { (dates, error) -> Void in
-        if error == nil {
-          self.scheduler.createNotificationFor(dates: dates as! [NSDate])
-          self.showDefaultAlert("Congrats", message: "Your pass notification is set", actionTitle: "Good")
-        }
-        else {
-          self.showDefaultAlert("Sorry", message: "Not able to get your pass time", actionTitle: "OK")
-          sender.setOn(false, animated: true)
-        }
-      }
+      turnOnNotification()
     }
     else {
-      
+      turnOffNotification()
     }
+  }
+  
+  func turnOnNotification() {
+    let registrationInfo = GDRegistrationInfoParser()
+    registrationInfo.getAllPassTime { (dates, error) -> Void in
+      if error == nil {
+        self.scheduler.createNotificationFor(dates: dates as! [NSDate])
+        self.showDefaultAlert("Congrats", message: "Your pass notification is set", actionTitle: "Good")
+        self.updateUserDefaults(true)
+      }
+      else {
+        self.showDefaultAlert("Sorry", message: "Not able to get your pass time", actionTitle: "OK")
+        self.passNotificationSwitch.setOn(false, animated: true)
+      }
+    }
+  }
+
+  func turnOffNotification() {
+    scheduler.removeScheduledNotification()
+    updateUserDefaults(false)
+  }
+  
+  func updateUserDefaults(isNotificationOn: Bool) {
+    userSettings.setBool(isNotificationOn, forKey: SettingsKey.notification)
+    userSettings.synchronize()
   }
   
   /*

@@ -8,18 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		2F49BF671C37BDF900DD8B32 /* NotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49BF661C37BDF900DD8B32 /* NotificationScheduler.swift */; };
-		2F49BF691C37C11F00DD8B32 /* PrameterParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49BF681C37C11F00DD8B32 /* PrameterParser.swift */; };
+		2F49BF691C37C11F00DD8B32 /* GDPrameterParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49BF681C37C11F00DD8B32 /* GDPrameterParser.swift */; };
 		2F73B4A91C33A7C200C78204 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73B4A81C33A7C200C78204 /* AppDelegate.swift */; };
-		2F73B4AB1C33A7C200C78204 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73B4AA1C33A7C200C78204 /* FirstViewController.swift */; };
 		2F73B4B01C33A7C200C78204 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F73B4AE1C33A7C200C78204 /* Main.storyboard */; };
 		2F73B4B21C33A7C200C78204 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F73B4B11C33A7C200C78204 /* Assets.xcassets */; };
 		2F73B4B51C33A7C200C78204 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F73B4B31C33A7C200C78204 /* LaunchScreen.storyboard */; };
 		2F73B4CB1C33A7C200C78204 /* GoldDiggerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73B4CA1C33A7C200C78204 /* GoldDiggerUITests.swift */; };
-		2FC103F51C34DF2E001D5FA0 /* RegistrationInfoProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC103F41C34DF2E001D5FA0 /* RegistrationInfoProcessor.swift */; };
-		2FC103F71C34E26E001D5FA0 /* RegistrationInfoProcessorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC103F61C34E26E001D5FA0 /* RegistrationInfoProcessorTests.swift */; };
+		2F82431D1C40ACC200E2986A /* ScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82431C1C40ACC200E2986A /* ScheduleTableViewController.swift */; };
+		2F82431F1C40AE0800E2986A /* GDClassSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82431E1C40AE0800E2986A /* GDClassSchedule.swift */; };
+		2FC103F51C34DF2E001D5FA0 /* GDRegistrationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC103F41C34DF2E001D5FA0 /* GDRegistrationInfo.swift */; };
+		2FC103F71C34E26E001D5FA0 /* RegistrationInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC103F61C34E26E001D5FA0 /* RegistrationInfoTests.swift */; };
 		2FC103F91C34E9ED001D5FA0 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC103F81C34E9ED001D5FA0 /* Common.swift */; };
 		2FC476291C33B603000E2EF0 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC476281C33B603000E2EF0 /* SettingViewController.swift */; };
-		2FC4762B1C33C1FF000E2EF0 /* GoldLoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC4762A1C33C1FF000E2EF0 /* GoldLoginHelper.swift */; };
+		2FC4762B1C33C1FF000E2EF0 /* GDLoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC4762A1C33C1FF000E2EF0 /* GDLoginHelper.swift */; };
 		2FFB44E01C33C7D70081D59A /* GoldLoginHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFB44DF1C33C7D70081D59A /* GoldLoginHelperTests.swift */; };
 		8C3AD633E60456AB47D1E54F /* Pods_GoldDiggerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF071FED33D221610278438 /* Pods_GoldDiggerTests.framework */; };
 		949B335C2350AA35DDFA6E8B /* Pods_GoldDigger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CC4EF2E3D040001908A6B4E /* Pods_GoldDigger.framework */; };
@@ -46,10 +47,9 @@
 		0DF071FED33D221610278438 /* Pods_GoldDiggerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoldDiggerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C5E7D9863BB66FD45A5D06C /* Pods-GoldDiggerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoldDiggerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoldDiggerTests/Pods-GoldDiggerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2F49BF661C37BDF900DD8B32 /* NotificationScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationScheduler.swift; sourceTree = "<group>"; };
-		2F49BF681C37C11F00DD8B32 /* PrameterParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrameterParser.swift; sourceTree = "<group>"; };
+		2F49BF681C37C11F00DD8B32 /* GDPrameterParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDPrameterParser.swift; sourceTree = "<group>"; };
 		2F73B4A51C33A7C200C78204 /* GoldDigger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoldDigger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F73B4A81C33A7C200C78204 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2F73B4AA1C33A7C200C78204 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		2F73B4AF1C33A7C200C78204 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2F73B4B11C33A7C200C78204 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F73B4B41C33A7C200C78204 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -59,11 +59,13 @@
 		2F73B4C61C33A7C200C78204 /* GoldDiggerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoldDiggerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F73B4CA1C33A7C200C78204 /* GoldDiggerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldDiggerUITests.swift; sourceTree = "<group>"; };
 		2F73B4CC1C33A7C200C78204 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2FC103F41C34DF2E001D5FA0 /* RegistrationInfoProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationInfoProcessor.swift; sourceTree = "<group>"; };
-		2FC103F61C34E26E001D5FA0 /* RegistrationInfoProcessorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationInfoProcessorTests.swift; sourceTree = "<group>"; };
+		2F82431C1C40ACC200E2986A /* ScheduleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewController.swift; sourceTree = "<group>"; };
+		2F82431E1C40AE0800E2986A /* GDClassSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDClassSchedule.swift; sourceTree = "<group>"; };
+		2FC103F41C34DF2E001D5FA0 /* GDRegistrationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDRegistrationInfo.swift; sourceTree = "<group>"; };
+		2FC103F61C34E26E001D5FA0 /* RegistrationInfoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationInfoTests.swift; sourceTree = "<group>"; };
 		2FC103F81C34E9ED001D5FA0 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		2FC476281C33B603000E2EF0 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		2FC4762A1C33C1FF000E2EF0 /* GoldLoginHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoldLoginHelper.swift; sourceTree = "<group>"; };
+		2FC4762A1C33C1FF000E2EF0 /* GDLoginHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDLoginHelper.swift; sourceTree = "<group>"; };
 		2FFB44DF1C33C7D70081D59A /* GoldLoginHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoldLoginHelperTests.swift; sourceTree = "<group>"; };
 		2FFB44E11C33E7460081D59A /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		2FFB44E31C33E75E0081D59A /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
@@ -102,6 +104,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F49BF6A1C3B052000DD8B32 /* GoldAPI */ = {
+			isa = PBXGroup;
+			children = (
+				2F49BF681C37C11F00DD8B32 /* GDPrameterParser.swift */,
+				2FC4762A1C33C1FF000E2EF0 /* GDLoginHelper.swift */,
+				2FC103F41C34DF2E001D5FA0 /* GDRegistrationInfo.swift */,
+				2F82431E1C40AE0800E2986A /* GDClassSchedule.swift */,
+			);
+			name = GoldAPI;
+			sourceTree = "<group>";
+		};
+		2F49BF6B1C3B057900DD8B32 /* GUI */ = {
+			isa = PBXGroup;
+			children = (
+				2F73B4B31C33A7C200C78204 /* LaunchScreen.storyboard */,
+				2F73B4AE1C33A7C200C78204 /* Main.storyboard */,
+				2F73B4B11C33A7C200C78204 /* Assets.xcassets */,
+			);
+			name = GUI;
+			sourceTree = "<group>";
+		};
 		2F73B49C1C33A7C200C78204 = {
 			isa = PBXGroup;
 			children = (
@@ -128,16 +151,11 @@
 			isa = PBXGroup;
 			children = (
 				2F73B4A81C33A7C200C78204 /* AppDelegate.swift */,
-				2F73B4AA1C33A7C200C78204 /* FirstViewController.swift */,
-				2FC476281C33B603000E2EF0 /* SettingViewController.swift */,
-				2FC4762A1C33C1FF000E2EF0 /* GoldLoginHelper.swift */,
-				2F49BF681C37C11F00DD8B32 /* PrameterParser.swift */,
 				2FC103F81C34E9ED001D5FA0 /* Common.swift */,
-				2FC103F41C34DF2E001D5FA0 /* RegistrationInfoProcessor.swift */,
+				2F49BF6B1C3B057900DD8B32 /* GUI */,
+				2F49BF6A1C3B052000DD8B32 /* GoldAPI */,
+				2F82431B1C3FAD8900E2986A /* Controllers */,
 				2F49BF661C37BDF900DD8B32 /* NotificationScheduler.swift */,
-				2F73B4AE1C33A7C200C78204 /* Main.storyboard */,
-				2F73B4B11C33A7C200C78204 /* Assets.xcassets */,
-				2F73B4B31C33A7C200C78204 /* LaunchScreen.storyboard */,
 				2F73B4B61C33A7C200C78204 /* Info.plist */,
 			);
 			path = GoldDigger;
@@ -148,7 +166,7 @@
 			children = (
 				2F73B4C11C33A7C200C78204 /* Info.plist */,
 				2FFB44DF1C33C7D70081D59A /* GoldLoginHelperTests.swift */,
-				2FC103F61C34E26E001D5FA0 /* RegistrationInfoProcessorTests.swift */,
+				2FC103F61C34E26E001D5FA0 /* RegistrationInfoTests.swift */,
 			);
 			path = GoldDiggerTests;
 			sourceTree = "<group>";
@@ -160,6 +178,15 @@
 				2F73B4CC1C33A7C200C78204 /* Info.plist */,
 			);
 			path = GoldDiggerUITests;
+			sourceTree = "<group>";
+		};
+		2F82431B1C3FAD8900E2986A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2F82431C1C40ACC200E2986A /* ScheduleTableViewController.swift */,
+				2FC476281C33B603000E2EF0 /* SettingViewController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		77DC1C6B7E97A8B61A3084FB /* Pods */ = {
@@ -417,14 +444,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F82431D1C40ACC200E2986A /* ScheduleTableViewController.swift in Sources */,
 				2F49BF671C37BDF900DD8B32 /* NotificationScheduler.swift in Sources */,
-				2FC103F51C34DF2E001D5FA0 /* RegistrationInfoProcessor.swift in Sources */,
+				2FC103F51C34DF2E001D5FA0 /* GDRegistrationInfo.swift in Sources */,
 				2F73B4A91C33A7C200C78204 /* AppDelegate.swift in Sources */,
+				2F82431F1C40AE0800E2986A /* GDClassSchedule.swift in Sources */,
 				2FC103F91C34E9ED001D5FA0 /* Common.swift in Sources */,
-				2F49BF691C37C11F00DD8B32 /* PrameterParser.swift in Sources */,
-				2F73B4AB1C33A7C200C78204 /* FirstViewController.swift in Sources */,
+				2F49BF691C37C11F00DD8B32 /* GDPrameterParser.swift in Sources */,
 				2FC476291C33B603000E2EF0 /* SettingViewController.swift in Sources */,
-				2FC4762B1C33C1FF000E2EF0 /* GoldLoginHelper.swift in Sources */,
+				2FC4762B1C33C1FF000E2EF0 /* GDLoginHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,7 +460,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FC103F71C34E26E001D5FA0 /* RegistrationInfoProcessorTests.swift in Sources */,
+				2FC103F71C34E26E001D5FA0 /* RegistrationInfoTests.swift in Sources */,
 				2FFB44E01C33C7D70081D59A /* GoldLoginHelperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

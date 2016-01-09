@@ -23,7 +23,8 @@ class NotificationScheduler: NSObject {
     }
   }
   
-  func isNotificationScheduled() -> Bool {
-    return (UIApplication.sharedApplication().scheduledLocalNotifications?.count != 0) ? true : false
+  func removeScheduledNotification() {
+    // WARNING: this may calcel other notification
+    UIApplication.sharedApplication().cancelAllLocalNotifications()
   }
 }
