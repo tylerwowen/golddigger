@@ -1,5 +1,5 @@
 //
-//  GDLoginHelper.swift
+//  GDAccountManager.swift
 //  GoldDigger
 //
 //  Created by Tyler Weimin Ouyang on 12/29/15.
@@ -21,10 +21,10 @@ enum credentialKeys {
   static let netID = "netIDKey", password = "passwordKey"
 }
 
-class GDLoginHelper: NSObject {
+class GDAccountManager: NSObject {
   
   /// Singleton instance
-  static let sharedInstance = GDLoginHelper()
+  static let sharedInstance = GDAccountManager()
   
   /// NSUserDefaults reference
   let userCredentials = NSUserDefaults.standardUserDefaults()

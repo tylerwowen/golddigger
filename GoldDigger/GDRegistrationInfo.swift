@@ -13,7 +13,7 @@ import UIKit
 
 class GDRegistrationInfoParser: NSObject {
   
-  private var loginHelper = GDLoginHelper.sharedInstance
+  private var accountManager = GDAccountManager.sharedInstance
   private let rootURL = "https://my.sa.ucsb.edu/gold/RegistrationInfo.aspx"
   var htmlData: NSData?
 
@@ -73,7 +73,7 @@ class GDRegistrationInfoParser: NSObject {
     return getDefaultHTML().continueWithBlock { (task: BFTask!) -> BFTask in
       if task.error != nil {
         // Log in and retry
-        return self.loginHelper.login(onSuccess: nil, onFail: nil).continueWithSuccessBlock({ (task: BFTask!) -> BFTask in
+        return self.accountManager.login(onSuccess: nil, onFail: nil).continueWithSuccessBlock({ (task: BFTask!) -> BFTask in
           return self.getDefaultHTML()
         })
       }

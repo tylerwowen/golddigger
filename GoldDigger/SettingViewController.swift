@@ -19,15 +19,15 @@ class SettingViewController: UITableViewController, UITextFieldDelegate {
   @IBOutlet weak var passwordTextField: UITextField!
   @IBOutlet weak var passNotificationSwitch: UISwitch!
   
-  let loginHelper = GDLoginHelper.sharedInstance
+  let accountManager = GDAccountManager.sharedInstance
   let scheduler = NotificationScheduler()
   let userSettings = NSUserDefaults.standardUserDefaults()
 
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    netIDTextField.text = loginHelper.netID
-    passwordTextField.text = loginHelper.password
+    netIDTextField.text = accountManager.netID
+    passwordTextField.text = accountManager.password
     
     restoreSettings()
   }
@@ -57,7 +57,7 @@ class SettingViewController: UITableViewController, UITextFieldDelegate {
       textField.resignFirstResponder()
       if netIDTextField.text != nil && passwordTextField.text != nil {
         
-        loginHelper.login(netID: netIDTextField.text!, password: passwordTextField.text!, onSuccess: loginSuccessHandler, onFail: nil)
+        accountManager.login(netID: netIDTextField.text!, password: passwordTextField.text!, onSuccess: loginSuccessHandler, onFail: nil)
       }
     }
     return true
