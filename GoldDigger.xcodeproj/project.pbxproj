@@ -19,6 +19,8 @@
 		2F8243211C40B52C00E2986A /* GDClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8243201C40B52C00E2986A /* GDClass.swift */; };
 		2F8243241C40DA9200E2986A /* GDBaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8243231C40DA9200E2986A /* GDBaseClass.swift */; };
 		2F8243271C40E0BF00E2986A /* GDQuarterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8243261C40E0BF00E2986A /* GDQuarterManager.swift */; };
+		2F82432B1C40E8F700E2986A /* GDQuarterMangerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82432A1C40E8F700E2986A /* GDQuarterMangerTests.swift */; };
+		2F82432D1C40EB3400E2986A /* GDQuarter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82432C1C40EB3400E2986A /* GDQuarter.swift */; };
 		2FC103F51C34DF2E001D5FA0 /* GDRegistrationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC103F41C34DF2E001D5FA0 /* GDRegistrationInfo.swift */; };
 		2FC103F71C34E26E001D5FA0 /* GDRegistrationInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC103F61C34E26E001D5FA0 /* GDRegistrationInfoTests.swift */; };
 		2FC103F91C34E9ED001D5FA0 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC103F81C34E9ED001D5FA0 /* Common.swift */; };
@@ -67,6 +69,8 @@
 		2F8243201C40B52C00E2986A /* GDClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDClass.swift; sourceTree = "<group>"; };
 		2F8243231C40DA9200E2986A /* GDBaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDBaseClass.swift; sourceTree = "<group>"; };
 		2F8243261C40E0BF00E2986A /* GDQuarterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDQuarterManager.swift; sourceTree = "<group>"; };
+		2F82432A1C40E8F700E2986A /* GDQuarterMangerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDQuarterMangerTests.swift; sourceTree = "<group>"; };
+		2F82432C1C40EB3400E2986A /* GDQuarter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDQuarter.swift; sourceTree = "<group>"; };
 		2FC103F41C34DF2E001D5FA0 /* GDRegistrationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDRegistrationInfo.swift; sourceTree = "<group>"; };
 		2FC103F61C34E26E001D5FA0 /* GDRegistrationInfoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDRegistrationInfoTests.swift; sourceTree = "<group>"; };
 		2FC103F81C34E9ED001D5FA0 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
@@ -116,8 +120,8 @@
 				2F8243251C40DFDB00E2986A /* Utils */,
 				2F8243221C40B53300E2986A /* Models */,
 				2FC4762A1C33C1FF000E2EF0 /* GDAccountManager.swift */,
-				2FC103F41C34DF2E001D5FA0 /* GDRegistrationInfo.swift */,
 				2F8243261C40E0BF00E2986A /* GDQuarterManager.swift */,
+				2FC103F41C34DF2E001D5FA0 /* GDRegistrationInfo.swift */,
 				2F82431E1C40AE0800E2986A /* GDClassSchedule.swift */,
 			);
 			name = GoldAPI;
@@ -172,9 +176,8 @@
 		2F73B4BE1C33A7C200C78204 /* GoldDiggerTests */ = {
 			isa = PBXGroup;
 			children = (
+				2F8243281C40E88E00E2986A /* GoldAPI */,
 				2F73B4C11C33A7C200C78204 /* Info.plist */,
-				2FFB44DF1C33C7D70081D59A /* GDAccountManagerTests.swift */,
-				2FC103F61C34E26E001D5FA0 /* GDRegistrationInfoTests.swift */,
 			);
 			path = GoldDiggerTests;
 			sourceTree = "<group>";
@@ -200,8 +203,9 @@
 		2F8243221C40B53300E2986A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2F8243201C40B52C00E2986A /* GDClass.swift */,
 				2F8243231C40DA9200E2986A /* GDBaseClass.swift */,
+				2F8243201C40B52C00E2986A /* GDClass.swift */,
+				2F82432C1C40EB3400E2986A /* GDQuarter.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -210,6 +214,24 @@
 			isa = PBXGroup;
 			children = (
 				2F49BF681C37C11F00DD8B32 /* GDPrameterParser.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		2F8243281C40E88E00E2986A /* GoldAPI */ = {
+			isa = PBXGroup;
+			children = (
+				2F8243291C40E89D00E2986A /* Utils */,
+				2FC103F61C34E26E001D5FA0 /* GDRegistrationInfoTests.swift */,
+				2FFB44DF1C33C7D70081D59A /* GDAccountManagerTests.swift */,
+				2F82432A1C40E8F700E2986A /* GDQuarterMangerTests.swift */,
+			);
+			name = GoldAPI;
+			sourceTree = "<group>";
+		};
+		2F8243291C40E89D00E2986A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -474,6 +496,7 @@
 				2FC103F51C34DF2E001D5FA0 /* GDRegistrationInfo.swift in Sources */,
 				2F73B4A91C33A7C200C78204 /* AppDelegate.swift in Sources */,
 				2F82431F1C40AE0800E2986A /* GDClassSchedule.swift in Sources */,
+				2F82432D1C40EB3400E2986A /* GDQuarter.swift in Sources */,
 				2FC103F91C34E9ED001D5FA0 /* Common.swift in Sources */,
 				2F8243241C40DA9200E2986A /* GDBaseClass.swift in Sources */,
 				2F49BF691C37C11F00DD8B32 /* GDPrameterParser.swift in Sources */,
@@ -489,6 +512,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FC103F71C34E26E001D5FA0 /* GDRegistrationInfoTests.swift in Sources */,
+				2F82432B1C40E8F700E2986A /* GDQuarterMangerTests.swift in Sources */,
 				2FFB44E01C33C7D70081D59A /* GDAccountManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

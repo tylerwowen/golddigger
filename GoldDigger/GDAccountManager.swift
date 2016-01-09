@@ -141,9 +141,8 @@ class GDAccountManager: NSObject {
   }
   
   func assembleRequestData(html: NSData) -> [String: AnyObject]{
-    let parser = GDPrameterParser()
     let parameters = Array(requestKeys[0..<6])
-    let paramDict = parser.extractParameters(parameters, fromHTML: html)
+    let paramDict = GDPrameterParser.extractParameters(parameters, fromHTML: html)
     return assembleUserInfo(paramDict)
   }
   

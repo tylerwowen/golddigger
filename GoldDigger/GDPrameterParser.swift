@@ -11,7 +11,7 @@ import UIKit
 
 class GDPrameterParser: NSObject {
   
-  func extractParameters(parameters: [String], fromHTML html: NSData) -> [String: AnyObject]{
+  class func extractParameters(parameters: [String], fromHTML html: NSData) -> [String: AnyObject]{
     if let doc = Kanna.HTML(html: html, encoding: NSUTF8StringEncoding) {
       
       var parametersDict = Dictionary<String, AnyObject>()

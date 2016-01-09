@@ -86,8 +86,8 @@ class SettingViewController: UITableViewController, UITextFieldDelegate {
   }
   
   func turnOnNotification() {
-    let registrationInfo = GDRegistrationInfoParser()
-    registrationInfo.getAllPassTime { (dates, error) -> Void in
+    let registrationInfo = GDRegistrationInfo.sharedInstance
+    registrationInfo.passTimeOfLatestQuarter { (dates, error) -> Void in
       if error == nil {
         self.scheduler.createNotificationFor(dates: dates as! [NSDate])
         self.showDefaultAlert("Congrats", message: "Your pass notification is set", actionTitle: "Good")

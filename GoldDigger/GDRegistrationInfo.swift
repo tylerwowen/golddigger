@@ -1,5 +1,5 @@
 //
-//  GDRegistrationInfoParser.swift
+//  GDRegistrationInfo.swift
 //  GoldDigger
 //
 //  Created by Tyler Weimin Ouyang on 12/30/15.
@@ -11,19 +11,29 @@ import Bolts
 import Kanna
 import UIKit
 
-class GDRegistrationInfoParser: NSObject {
+class GDRegistrationInfo: NSObject {
   
-  private var accountManager = GDAccountManager.sharedInstance
+  /// Singleton instance
+  static let sharedInstance = GDRegistrationInfo()
+  
+  private let accountManager = GDAccountManager.sharedInstance
   private let rootURL = "https://my.sa.ucsb.edu/gold/RegistrationInfo.aspx"
-  var htmlData: NSData?
-
+  
+  var currentQuaterData: NSData?
+  // May be the same as the `currentQuarterData`
+  var latestQuaterData: NSData?
+  
   private let passIDs = [
     1: "#pageContent_PassOneLabel",
     2: "#pageContent_PassTwoLabel",
     3: "#pageContent_PassThreeLabel"
   ]
   
-  private let dropDeadLineID = "pageContent_DropDeadlineLabel"
+  enum QuarterInfoIdDs {
+    static let start = "pageContent_FirstDayInstructionLabel",
+    end = "pageContent_LastDayInstructionLabel",
+    drop = "pageContent_DropDeadlineLabel"
+  }
   
   private let parameterKeys = [
     "__EVENTTARGET",
@@ -37,36 +47,69 @@ class GDRegistrationInfoParser: NSObject {
   
   var passTimeArr = Array<NSDate>()
   
-  func getAllPassTime(onComplete completeBlock: completeHandler?) {
-    getHTMLOfLatestQuarter().continueWithBlock { (task) -> AnyObject? in
-        if task.error != nil {
-          if completeBlock != nil {completeBlock!(nil, task.error)}
-        }
-        else if task.result != nil {
-          if completeBlock != nil {completeBlock!(self.getPassTimeArr(), nil)}
-        }
-        return nil
-    }
-  }
-  
-  func getLastDayToDrop(onComplete completeBlock: completeHandler?) {
+  func passTimeOfLatestQuarter(onComplete completeBlock: completeHandler?) {
     getHTMLOfLatestQuarter().continueWithBlock { (task) -> AnyObject? in
       if task.error != nil {
         if completeBlock != nil {completeBlock!(nil, task.error)}
       }
       else if task.result != nil {
-        if completeBlock != nil {completeBlock!(self.parseLastDayToDrop(), nil)}
+        if completeBlock != nil {completeBlock!(self.getPassTimeArr(), nil)}
       }
       return nil
     }
+  }
+  
+  func lastDayToDrop(onComplete completeBlock: completeHandler?) {
+    getDefaultHTML().continueWithBlock { (task) -> AnyObject? in
+      if task.error != nil {
+        if completeBlock != nil {completeBlock!(nil, task.error)}
+      }
+      else if task.result != nil {
+        if completeBlock != nil {completeBlock!(self.parseDateForId(QuarterInfoIdDs.drop, withData: self.currentQuaterData!), nil)}
+      }
+      return nil
+    }
+  }
+  
+  func currentQuarter(onComplete completeBlock: completeHandler?) {
+    getDefaultHTML().continueWithBlock { (task) -> AnyObject? in
+      if task.error != nil {
+        if completeBlock != nil {completeBlock!(nil, task.error)}
+      }
+      else if task.result != nil {
+        if completeBlock != nil {completeBlock!(self.decorateQuarter(withData: self.currentQuaterData!, andCSS: GDQuarterManager.currentCSS), nil)}
+      }
+      return nil
+    }
+  }
+  
+  func latestQuarter(onComplete completeBlock: completeHandler?) {
+    getHTMLOfLatestQuarter().continueWithBlock { (task) -> AnyObject? in
+      if task.error != nil {
+        if completeBlock != nil {completeBlock!(nil, task.error)}
+      }
+      else if task.result != nil {
+        if completeBlock != nil {completeBlock!(self.decorateQuarter(withData: self.latestQuaterData!, andCSS: GDQuarterManager.latestCSS), nil)}
+      }
+      return nil
+    }
+  }
+  
+  func decorateQuarter(withData data: NSData, andCSS css: String) -> GDQuarter? {
+    let quarter = GDQuarter()
+    quarter.start = parseDateForId(QuarterInfoIdDs.start, withData: data)
+    quarter.end = parseDateForId(QuarterInfoIdDs.end, withData: data)
+    quarter.name = GDQuarterManager.findQuarterName(withHtmlData: data, andCSS: css)
+    return quarter
   }
   
   // MARK: - Networking request
   
   func getHTMLOfLatestQuarter() -> BFTask {
     let task = BFTaskCompletionSource()
-    if (htmlData != nil) {
-      task.setResult(htmlData)
+    // check if already feched
+    if (latestQuaterData != nil) {
+      task.setResult(latestQuaterData)
       return task.task
     }
     
@@ -79,14 +122,16 @@ class GDRegistrationInfoParser: NSObject {
       }
       return task
       }.continueWithSuccessBlock { (task: BFTask!) -> AnyObject? in
-        if self.isCurentLatest(task.result as! NSData) {
-          self.htmlData = (task.result as! NSData)
+        // Store html data
+        self.currentQuaterData = (task.result as! NSData)
+        if GDQuarterManager.isCurentLatest(self.currentQuaterData!) {
+          self.latestQuaterData = self.currentQuaterData!
           return task
         }
         else {// get the HTML for next quarter
           return self.getHTMLOfNextQuarter()
         }
-      }
+    }
   }
   
   /**
@@ -96,6 +141,11 @@ class GDRegistrationInfoParser: NSObject {
    */
   func getDefaultHTML() -> BFTask {
     let task = BFTaskCompletionSource()
+    // check if already feched
+    if (currentQuaterData != nil) {
+      task.setResult(currentQuaterData)
+      return task.task
+    }
     Alamofire.request(.GET, rootURL)
       .responseData { response in
         if response.response!.URL!.path!.containsString("RegistrationInfo.aspx") {
@@ -111,10 +161,10 @@ class GDRegistrationInfoParser: NSObject {
   
   func getHTMLOfNextQuarter() -> BFTask {
     let task = BFTaskCompletionSource()
-    Alamofire.request(.POST, rootURL, parameters:self.assembleRequestData())
+    Alamofire.request(.POST, rootURL, parameters: GDQuarterManager.assembleRequestData(parameterKeys, htmlData: currentQuaterData!))
       .responseData { response in
-        if response.data != nil && self.isCurentLatest(response.data!) {
-          self.htmlData = response.data
+        if response.data != nil && GDQuarterManager.isCurentLatest(response.data!) {
+          self.latestQuaterData = response.data
           task.setResult(response.data)
         }
         else {
@@ -125,18 +175,6 @@ class GDRegistrationInfoParser: NSObject {
     return task.task
   }
   
-  func assembleRequestData() -> [String: AnyObject] {
-    let parser = GDPrameterParser()
-    let params = Array(parameterKeys[0..<5])
-    let paramDict = parser.extractParameters(params, fromHTML: htmlData!)
-    return assembleQuarterInfo(paramDict)
-  }
-  
-  func assembleQuarterInfo(var parameters:[String: AnyObject]) -> [String: AnyObject]{
-    parameters[parameterKeys[0]] = "ctl00$pageContent$quarterDropDown"
-    parameters[parameterKeys[5]] = findLatestQuarter(htmlData!)
-    return parameters
-  }
   
   // MARK: - Utils
   
@@ -151,7 +189,7 @@ class GDRegistrationInfoParser: NSObject {
   }
   
   func parsePassTime(number: Int) -> NSDate? {
-    if let doc = Kanna.HTML(html: htmlData!, encoding: NSUTF8StringEncoding) {
+    if let doc = Kanna.HTML(html: latestQuaterData!, encoding: NSUTF8StringEncoding) {
       
       var dateString = doc.at_css(passIDs[number]!)?.text
       dateString = dateString?.componentsSeparatedByString("-")[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
@@ -166,9 +204,10 @@ class GDRegistrationInfoParser: NSObject {
     return nil
   }
   
-  func parseLastDayToDrop() -> NSDate? {
-    if let doc = Kanna.HTML(html: htmlData!, encoding: NSUTF8StringEncoding) {
-      let dateString = doc.at_css(dropDeadLineID)?.text
+  func parseDateForId(id: String, withData data: NSData) -> NSDate? {
+    
+    if let doc = Kanna.HTML(html: data, encoding: NSUTF8StringEncoding) {
+      let dateString = doc.at_css(id)?.text
       if dateString != nil {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "M/d/yyyy"
@@ -179,29 +218,5 @@ class GDRegistrationInfoParser: NSObject {
     return nil
   }
   
-  func isCurentLatest(htmlData: NSData) -> Bool {
-    let latest = self.findLatestQuarter(htmlData)
-    let current = self.findCurrentQuarter(htmlData)
-    
-    return latest != nil && latest == current
-  }
   
-  func findLatestQuarter(htmlData: NSData) -> String? {
-    if let doc = Kanna.HTML(html: htmlData, encoding: NSUTF8StringEncoding) {
-      if let quarter = doc.at_css("#pageContent_quarterDropDown option:nth-child(2)") {
-        return quarter["value"]
-      }
-    }
-    return nil
-  }
-  
-  func findCurrentQuarter(htmlData: NSData) -> String? {
-    if let doc = Kanna.HTML(html: htmlData, encoding: NSUTF8StringEncoding) {
-      if let quarter = doc.at_css("#pageContent_quarterDropDown [selected]") {
-        return quarter["value"]
-      }
-    }
-    return nil
-  }
-
 }
