@@ -101,14 +101,15 @@ class ScheduleTableViewController: UITableViewController {
   }
   
   func askToOverWrite() {
-    let alerController = UIAlertController(title: "Do you want to overwrite?", message: "You already exported them before!", preferredStyle: .Alert)
+    let alerController = UIAlertController(title: "Did you want to overwrite?", message: "You already exported them before!", preferredStyle: .Alert)
     let addToCalendarAction  = UIAlertAction(title: "YES!!", style: .Default, handler: overwrite)
     let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
 
     alerController.addAction(addToCalendarAction)
     alerController.addAction(cancelAction)
-    
-    self.presentViewController(alerController, animated: true, completion: nil)
+    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+      self.presentViewController(alerController, animated: true, completion: nil)
+    })
   }
   
   func overwrite(action: UIAlertAction) -> Void {

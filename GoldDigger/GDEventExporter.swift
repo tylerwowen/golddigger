@@ -15,7 +15,7 @@ class GDEventExporter: NSObject {
   var quarter: GDQuarter!
   var store = EKEventStore()
   let calendar = NSCalendar.currentCalendar()
-  
+  let notes = "CreatedByGoldDigger@tylero"
   init(with classArr: [GDClass], quarter: GDQuarter) {
     super.init()
     self.classArr = classArr
@@ -35,35 +35,63 @@ class GDEventExporter: NSObject {
   }
   
   func foundDuplication() -> Bool {
-    
+    let predicate = store.predicateForEventsWithStartDate(quarter.start!, endDate: quarter.end!, calendars: [store.defaultCalendarForNewEvents])
+    let events = store.eventsMatchingPredicate(predicate)
+    for event in events {
+      if event.notes == notes {
+        return true;
+      }
+    }
     return false
   }
   
   func removeDuplicates() {
-    
+    let predicate = store.predicateForEventsWithStartDate(quarter.start!, endDate: quarter.end!, calendars: [store.defaultCalendarForNewEvents])
+    let events = store.eventsMatchingPredicate(predicate)
+    do {
+      for event in events {
+        if event.notes == notes {
+          try store.removeEvent(event, span: .ThisEvent)
+        }
+      }
+      try store.commit()
+    } catch {
+      
+    }
   }
   
   func export(onComplete: completeHandler) {
-    for (var i = 0; i < classArr.count; i++) {
-      let lecture = classArr[i]
-      let event = EKEvent(eventStore: self.store)
-      let startEnd = startEndDates(lecture)
-     
-      event.calendar = self.store.defaultCalendarForNewEvents
-      event.title = lecture.courseTitle
-      event.location = lecture.location
-      event.recurrenceRules = [recurrenceRule(lecture.days)]
-      event.startDate = startEnd.0
-      event.endDate = startEnd.1
-      
-      do {
-        try self.store.saveEvent(event, span: .FutureEvents, commit: true)
-      } catch {
-        let error = NSError(domain: "GoldDigger", code: 5, userInfo: nil)
-        onComplete(nil, error)
+    do {
+      for (var i = 0; i < classArr.count; i++) {
+        
+        let lecture = assembleEvent(forMeeting: classArr[i])
+        try store.saveEvent(lecture, span: .FutureEvents)
+        if classArr[i].section != nil {
+          let section = assembleEvent(forMeeting: classArr[i].section!)
+          try store.saveEvent(section, span: .FutureEvents)
+        }
       }
+      try store.commit()
+    } catch {
+      let error = NSError(domain: "GoldDigger", code: 5, userInfo: nil)
+      onComplete(nil, error)
     }
     onComplete(nil, nil)
+  }
+  
+  func assembleEvent(forMeeting meeting: GDSection) -> EKEvent{
+    let event = EKEvent(eventStore: store)
+    let startEnd = startEndDates(meeting)
+    
+    event.calendar = store.defaultCalendarForNewEvents
+    event.title = meeting.courseTitle
+    event.location = meeting.location
+    event.recurrenceRules = [recurrenceRule(meeting.days)]
+    event.startDate = startEnd.0
+    event.endDate = startEnd.1
+    event.notes = notes
+    
+    return event
   }
   
   func recurrenceRule(days:[EKRecurrenceDayOfWeek]) -> EKRecurrenceRule {
@@ -79,14 +107,14 @@ class GDEventExporter: NSObject {
       end: EKRecurrenceEnd(endDate: quarter.end!))
   }
   
-  func startEndDates(lecture: GDClass) -> (NSDate, NSDate) {
-    let mergedComponents = lecture.start
-    mergedComponents.weekday = lecture.days[0].dayOfTheWeek.rawValue
+  func startEndDates(meeting: GDSection) -> (NSDate, NSDate) {
+    let mergedComponents = meeting.start
+    mergedComponents.weekday = meeting.days[0].dayOfTheWeek.rawValue
     
     let start = calendar.nextDateAfterDate(quarter.start!,
       matchingComponents: mergedComponents,
       options: .MatchNextTime)!
-    let end = calendar.dateBySettingHour(lecture.end.hour, minute: lecture.end.minute, second: 0, ofDate: start, options: .MatchNextTime)!
+    let end = calendar.dateBySettingHour(meeting.end.hour, minute: meeting.end.minute, second: 0, ofDate: start, options: .MatchNextTime)!
     
     return (start, end)
   }

@@ -41,21 +41,11 @@ extension String {
   }
 }
 
-class GDClass: NSObject {
+class GDClass: GDSection {
   var grading: String!
   var units: Int!
   
-  var courseTitle: String!
   var enrlCode: String!
-  var location: String!
-  var instructor: String!
-  
-  var days: [EKRecurrenceDayOfWeek]!
-  var daysStr: String!
-  var start: NSDateComponents!
-  var startStr: String!
-  var end: NSDateComponents!
-  var endStr: String!
   
   var section: GDSection?
   
@@ -96,14 +86,15 @@ class GDClass: NSObject {
     location = nodes[2].at_css(".BuildingLocationLink")?.text!
     
     if nodes.count == 6 {
+      section!.courseTitle = "Section-" + courseTitle
       section!.daysStr = nodes[3].text?.trim()
-      section!.days = getDays(fromString: daysStr)
+      section!.days = getDays(fromString: section!.daysStr)
       
       let timeStringArr = nodes[4].text?.componentsSeparatedByString("-")
       section!.startStr = timeStringArr![0]
-      section!.start = startStr.toNSComponents()
+      section!.start = section!.startStr.toNSComponents()
       section!.endStr = timeStringArr![1]
-      section!.end = endStr.toNSComponents()
+      section!.end = section!.endStr.toNSComponents()
       
       section!.location = nodes[5].at_css(".BuildingLocationLink")?.text!
     }

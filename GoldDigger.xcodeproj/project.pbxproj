@@ -213,8 +213,8 @@
 		2F8243221C40B53300E2986A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2F8243201C40B52C00E2986A /* GDClass.swift */,
 				2FE8E76D1C55CE480062602C /* GDSection.swift */,
+				2F8243201C40B52C00E2986A /* GDClass.swift */,
 				2F82432C1C40EB3400E2986A /* GDQuarter.swift */,
 			);
 			name = Models;

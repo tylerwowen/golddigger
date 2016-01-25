@@ -10,6 +10,8 @@ import UIKit
 import EventKit
 
 class GDSection: NSObject {
+  var courseTitle: String!
+
   var location: String!
   var instructor: String!
   

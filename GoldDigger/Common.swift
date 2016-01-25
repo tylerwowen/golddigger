@@ -29,7 +29,6 @@ func showDefaultAlert(title: String, message: String, actionTitle: String) {
   alert.addAction(defaultAction)
   
   dispatch_async(dispatch_get_main_queue(), { () -> Void in
-    UIApplication.sharedApplication().keyWindow?.rootViewController?.dismissViewControllerAnimated(false, completion: nil)
     UIApplication.sharedApplication().keyWindow?.rootViewController?
       .presentViewController(alert, animated: true, completion: nil)
   })
