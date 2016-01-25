@@ -30,9 +30,9 @@ class GDRegistrationInfo: NSObject {
   ]
   
   enum QuarterInfoIdDs {
-    static let start = "pageContent_FirstDayInstructionLabel",
-    end = "pageContent_LastDayInstructionLabel",
-    drop = "pageContent_DropDeadlineLabel"
+    static let start = "#pageContent_FirstDayInstructionLabel",
+    end = "#pageContent_LastDayInstructionLabel",
+    drop = "#pageContent_DropDeadlineLabel"
   }
   
   private let parameterKeys = [
@@ -78,7 +78,7 @@ class GDRegistrationInfo: NSObject {
         newTask.setError(task.error!)
       }
       else {
-        newTask.setResult(self.decorateQuarter(withData: self.currentQuaterData!, andCSS: GDQuarterManager.latestCSS))
+        newTask.setResult(self.decorateQuarter(withData: self.currentQuaterData!, andCSS: GDQuarterManager.currentCSS))
       }
       return nil
     }
@@ -146,13 +146,15 @@ class GDRegistrationInfo: NSObject {
     }
     Alamofire.request(.GET, rootURL)
       .responseData { response in
-        if response.result.error != nil {
+        if response.result.isFailure {
+          // internet connection is not available ??
           task.setError(response.result.error!)
         }
         else if response.response!.URL!.path!.containsString("RegistrationInfo.aspx") {
           task.setResult(response.data)
         }
         else {
+          // invalid user crednetial
           let error = NSError(domain: "GoldDigger", code: 2, userInfo: nil)
           task.setError(error)
         }
@@ -164,7 +166,7 @@ class GDRegistrationInfo: NSObject {
     let task = BFTaskCompletionSource()
     Alamofire.request(.POST, rootURL, parameters: GDQuarterManager.assembleRequestData(parameterKeys, htmlData: currentQuaterData!))
       .responseData { response in
-        if response.result.error != nil {
+        if response.result.isFailure {
           task.setError(response.result.error!)
         }
         else if response.data != nil && GDQuarterManager.isCurentLatest(response.data!) {
@@ -215,7 +217,7 @@ class GDRegistrationInfo: NSObject {
       if dateString != nil {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "M/d/yyyy"
-        
+        dateFormatter.timeZone = NSTimeZone(abbreviation: "PST")
         return dateFormatter.dateFromString(dateString!)
       }
     }

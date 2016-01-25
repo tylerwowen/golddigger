@@ -20,7 +20,7 @@ class SettingViewController: UITableViewController, UITextFieldDelegate {
   @IBOutlet weak var passNotificationSwitch: UISwitch!
   
   let accountManager = GDAccountManager.sharedInstance
-  let scheduler = NotificationScheduler()
+  let scheduler = GDNotificationScheduler()
   let userSettings = NSUserDefaults.standardUserDefaults()
 
   override func viewDidLoad() {
@@ -33,7 +33,7 @@ class SettingViewController: UITableViewController, UITextFieldDelegate {
   }
   
   func restoreSettings() {
-    let isNotificationOn = userSettings.valueForKey(SettingsKey.notification) as! Bool
+    let isNotificationOn = userSettings.valueForKey(SettingsKey.notification) != nil ? true : false
     passNotificationSwitch.setOn(isNotificationOn, animated: false)
   }
   
@@ -67,22 +67,10 @@ class SettingViewController: UITableViewController, UITextFieldDelegate {
     showDefaultAlert("Congrats!", message: "Login succeeded", actionTitle: "OK")
   }
   
-  func showDefaultAlert(title: String, message: String, actionTitle: String) {
-    let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-    let defaultAction = UIAlertAction(title: actionTitle, style: UIAlertActionStyle.Default, handler: nil)
-    alert.addAction(defaultAction)
-    self.presentViewController(alert, animated: true, completion: nil)
-  }
-  
   // MARK: - Settings
   
   @IBAction func passNotificationToggled(sender: UISwitch) {
-    if sender.on == true {
-      turnOnNotification()
-    }
-    else {
-      turnOffNotification()
-    }
+    sender.on ? turnOnNotification() : turnOffNotification()
   }
   
   func turnOnNotification() {
@@ -90,11 +78,11 @@ class SettingViewController: UITableViewController, UITextFieldDelegate {
     registrationInfo.passTimeOfLatestQuarter { (dates, error) -> Void in
       if error == nil {
         self.scheduler.createNotificationFor(dates: dates as! [NSDate])
-        self.showDefaultAlert("Congrats", message: "Your pass notification is set", actionTitle: "Good")
+        showDefaultAlert("Congrats", message: "Your pass notification is set", actionTitle: "Good")
         self.updateUserDefaults(true)
       }
       else {
-        self.showDefaultAlert("Sorry", message: "Not able to get your pass time", actionTitle: "OK")
+        showDefaultAlert("Sorry", message: "Not able to get your pass time", actionTitle: "OK")
         self.passNotificationSwitch.setOn(false, animated: true)
       }
     }

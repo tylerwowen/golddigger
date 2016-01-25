@@ -78,7 +78,7 @@ class GDAccountManager: NSObject {
    - parameter failureBlock: failure block, called when log in failed
    */
   func login(netID netID: String, password: String,
-    onSuccess successBlock: SuccessBlockNil?,
+    onSuccess successBlock: successBlockNil?,
     onFail failureBlock: failureHandler?) -> BFTask {
       
       self.netID = netID
@@ -86,7 +86,7 @@ class GDAccountManager: NSObject {
       return login(onSuccess: successBlock, onFail: failureBlock)
   }
   
-  func login(onSuccess successBlock: SuccessBlockNil?, onFail failureBlock: failureHandler?) -> BFTask {
+  func login(onSuccess successBlock: successBlockNil?, onFail failureBlock: failureHandler?) -> BFTask {
     return downloadLoginPage(rootURL).continueWithSuccessBlock {
       (task: BFTask!) -> BFTask in
       let parameters = task.result as! [String: AnyObject]
@@ -108,15 +108,15 @@ class GDAccountManager: NSObject {
     let task = BFTaskCompletionSource()
     Alamofire.request(.POST, rootURL, parameters: parameters)
       .responseData { response in
-        if response.response!.URL!.path!.containsString("Home.aspx") {
+        if response.result.isFailure {
+          task.setError(response.result.error!)
+        }
+        else if response.response!.URL!.path!.containsString("Home.aspx") {
           task.setResult(nil)
         }
-        else if response.result.isSuccess {
+        else {
           let error = NSError(domain: "GoldDigger", code: 1, userInfo: nil)
           task.setError(error)
-        }
-        else {
-          task.setError(response.result.error!)
         }
     }
     return task.task

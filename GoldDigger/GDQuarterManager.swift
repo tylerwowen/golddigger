@@ -12,22 +12,33 @@ import UIKit
 
 class GDQuarterManager: NSObject {
   
+  static let sharedInstance = GDQuarterManager()
+
   var currentQuarter: GDQuarter?
   var latestQuarter: GDQuarter?
   
   static let currentCSS = "#pageContent_quarterDropDown [selected]"
   static let latestCSS = "#pageContent_quarterDropDown option:nth-child(2)"
   
-  func fetchCurrentQuarter(onComplete completeBlock: completeHandler?) {
+  func getCurrentQuarter(onComplete completeBlock: completeHandler?) -> BFTask {
+    let task = BFTaskCompletionSource()
+
+    if currentQuarter != nil {
+      task.setResult(currentQuarter)
+      return task.task
+    }
+    
     let registrationInfo = GDRegistrationInfo.sharedInstance
-    registrationInfo.currentQuarter().continueWithBlock { (task: BFTask!) -> AnyObject? in
+    
+    return registrationInfo.currentQuarter().continueWithBlock { (task: BFTask!) -> BFTask in
       if task.error != nil {
         if completeBlock != nil {completeBlock!(nil, task.error)}
       }
       else if task.result != nil {
         if completeBlock != nil {completeBlock!(task.result, nil)}
+        self.currentQuarter = task.result as? GDQuarter
       }
-      return nil
+      return task
     }
   }
   

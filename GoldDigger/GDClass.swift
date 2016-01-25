@@ -6,9 +6,9 @@
 //  Copyright © 2016 Tyler Ouyang. All rights reserved.
 //
 
-import EventKit
 import Kanna
 import UIKit
+import EventKit
 
 extension String {
   func toEKWeekday() -> EKRecurrenceDayOfWeek {
@@ -29,11 +29,15 @@ extension String {
       return EKRecurrenceDayOfWeek(.Saturday)
     }
   }
+
   
-  func toNSDate() -> NSDate? {
+  func toNSComponents() -> NSDateComponents? {
     let dateFormatter = NSDateFormatter()
+    let calendar = NSCalendar.currentCalendar()
     dateFormatter.dateFormat = "h:mm a"
-    return dateFormatter.dateFromString(self)
+    dateFormatter.timeZone = NSTimeZone(abbreviation: "PST");
+    let date = dateFormatter.dateFromString(self)
+    return calendar.components([.Hour, .Minute, ], fromDate: date!)
   }
 }
 
@@ -43,46 +47,71 @@ class GDClass: NSObject {
   
   var courseTitle: String!
   var enrlCode: String!
-  var localtion: String!
+  var location: String!
   var instructor: String!
   
   var days: [EKRecurrenceDayOfWeek]!
-  var start: NSDate?
-  var end: NSDate?
+  var daysStr: String!
+  var start: NSDateComponents!
+  var startStr: String!
+  var end: NSDateComponents!
+  var endStr: String!
   
-  var isSection = false
-  var section: GDClass?
+  var section: GDSection?
   
-  func decorate(withHTML html: String, index: Int) {
+  func inflate(withXML XML: XMLElement, index: Int) {
     let indexStr = String(index)
     
     let htmlClass = index % 2 == 0 ? " .clcellprimary" : " .clcellprimaryalt"
     let titleId = index % 2 == 0 ? "#pageContent_CourseList_CourseHeadingLabel_" :
     "#pageContent_CourseList_CourseHeadingLabelAlternate_"
     
-    let doc = Kanna.HTML(html: html, encoding: NSUTF8StringEncoding)
-    if doc != nil {
-      courseTitle = doc!.at_css(titleId + indexStr)?.text?.trim()
-      
-      let instructorNodes = doc!.css("#pageContent_CourseList_InstructorList_" + indexStr + htmlClass)
-      instructor = instructorNodes[0].text?.trim()
-      
-      let meetingNodes = doc!.css("#pageContent_CourseList_MeetingTimesList_" + indexStr + htmlClass)
-      
-      days = getDays(fromString: (meetingNodes[0].text?.trim()))
-      
-      let timeStringArr = meetingNodes[1].text?.componentsSeparatedByString("-")
-      start = timeStringArr![0].toNSDate()
-      end = timeStringArr![1].toNSDate()
-      
-      print(self)
+    courseTitle = XML.at_css(titleId + indexStr)?.text?.trim()
+    
+    let instructorNodes = XML.css("#pageContent_CourseList_InstructorList_" + indexStr + htmlClass)
+    processInstructorNodes(instructorNodes)
+    
+    let meetingNodes = XML.css("#pageContent_CourseList_MeetingTimesList_" + indexStr + htmlClass)
+    processMeetingNodes(meetingNodes)
+  }
+
+  private func processInstructorNodes(nodes: XMLNodeSet) {
+    instructor = nodes[0].text?.trim()
+    if nodes.count > 1 {
+      section = GDSection()
+      section!.instructor = nodes[1].text?.trim()
     }
   }
   
-  func getDays(fromString str: String?) -> [EKRecurrenceDayOfWeek]? {
+  private func processMeetingNodes(nodes: XMLNodeSet) {
+    daysStr = nodes[0].text?.trim()
+    days = getDays(fromString: daysStr)
+    
+    let timeStringArr = nodes[1].text?.componentsSeparatedByString("-")
+    startStr = timeStringArr![0]
+    start = startStr.toNSComponents()
+    endStr = timeStringArr![1]
+    end = endStr.toNSComponents()
+    
+    location = nodes[2].at_css(".BuildingLocationLink")?.text!
+    
+    if nodes.count == 6 {
+      section!.daysStr = nodes[3].text?.trim()
+      section!.days = getDays(fromString: daysStr)
+      
+      let timeStringArr = nodes[4].text?.componentsSeparatedByString("-")
+      section!.startStr = timeStringArr![0]
+      section!.start = startStr.toNSComponents()
+      section!.endStr = timeStringArr![1]
+      section!.end = endStr.toNSComponents()
+      
+      section!.location = nodes[5].at_css(".BuildingLocationLink")?.text!
+    }
+  }
+  
+  private func getDays(fromString str: String?) -> [EKRecurrenceDayOfWeek]? {
     return str == nil ? nil : str!.componentsSeparatedByString(" ").map({ (str) -> EKRecurrenceDayOfWeek in
       return str.toEKWeekday()
     })
   }
-
 }

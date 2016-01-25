@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2F49BF671C37BDF900DD8B32 /* NotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49BF661C37BDF900DD8B32 /* NotificationScheduler.swift */; };
+		2F49BF671C37BDF900DD8B32 /* GDNotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49BF661C37BDF900DD8B32 /* GDNotificationScheduler.swift */; };
 		2F49BF691C37C11F00DD8B32 /* GDPrameterParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49BF681C37C11F00DD8B32 /* GDPrameterParser.swift */; };
 		2F73B4A91C33A7C200C78204 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73B4A81C33A7C200C78204 /* AppDelegate.swift */; };
 		2F73B4B01C33A7C200C78204 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F73B4AE1C33A7C200C78204 /* Main.storyboard */; };
@@ -27,6 +27,9 @@
 		2FC103F91C34E9ED001D5FA0 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC103F81C34E9ED001D5FA0 /* Common.swift */; };
 		2FC476291C33B603000E2EF0 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC476281C33B603000E2EF0 /* SettingViewController.swift */; };
 		2FC4762B1C33C1FF000E2EF0 /* GDAccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC4762A1C33C1FF000E2EF0 /* GDAccountManager.swift */; };
+		2FE8E76C1C55BB070062602C /* GDClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8E76B1C55BB070062602C /* GDClassTableViewCell.swift */; };
+		2FE8E76E1C55CE480062602C /* GDSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8E76D1C55CE480062602C /* GDSection.swift */; };
+		2FE8E7701C55D4780062602C /* GDEventExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8E76F1C55D4780062602C /* GDEventExporter.swift */; };
 		2FFB44E01C33C7D70081D59A /* GDAccountManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFB44DF1C33C7D70081D59A /* GDAccountManagerTests.swift */; };
 		8C3AD633E60456AB47D1E54F /* Pods_GoldDiggerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF071FED33D221610278438 /* Pods_GoldDiggerTests.framework */; };
 		949B335C2350AA35DDFA6E8B /* Pods_GoldDigger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CC4EF2E3D040001908A6B4E /* Pods_GoldDigger.framework */; };
@@ -52,7 +55,7 @@
 /* Begin PBXFileReference section */
 		0DF071FED33D221610278438 /* Pods_GoldDiggerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoldDiggerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C5E7D9863BB66FD45A5D06C /* Pods-GoldDiggerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoldDiggerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoldDiggerTests/Pods-GoldDiggerTests.debug.xcconfig"; sourceTree = "<group>"; };
-		2F49BF661C37BDF900DD8B32 /* NotificationScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationScheduler.swift; sourceTree = "<group>"; };
+		2F49BF661C37BDF900DD8B32 /* GDNotificationScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDNotificationScheduler.swift; sourceTree = "<group>"; };
 		2F49BF681C37C11F00DD8B32 /* GDPrameterParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDPrameterParser.swift; sourceTree = "<group>"; };
 		2F73B4A51C33A7C200C78204 /* GoldDigger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoldDigger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F73B4A81C33A7C200C78204 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +81,9 @@
 		2FC103F81C34E9ED001D5FA0 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		2FC476281C33B603000E2EF0 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		2FC4762A1C33C1FF000E2EF0 /* GDAccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDAccountManager.swift; sourceTree = "<group>"; };
+		2FE8E76B1C55BB070062602C /* GDClassTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDClassTableViewCell.swift; sourceTree = "<group>"; };
+		2FE8E76D1C55CE480062602C /* GDSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDSection.swift; sourceTree = "<group>"; };
+		2FE8E76F1C55D4780062602C /* GDEventExporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDEventExporter.swift; sourceTree = "<group>"; };
 		2FFB44DF1C33C7D70081D59A /* GDAccountManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDAccountManagerTests.swift; sourceTree = "<group>"; };
 		2FFB44E11C33E7460081D59A /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		2FFB44E31C33E75E0081D59A /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
@@ -135,6 +141,7 @@
 				2F73B4B31C33A7C200C78204 /* LaunchScreen.storyboard */,
 				2F73B4AE1C33A7C200C78204 /* Main.storyboard */,
 				2F73B4B11C33A7C200C78204 /* Assets.xcassets */,
+				2FE8E76B1C55BB070062602C /* GDClassTableViewCell.swift */,
 			);
 			name = GUI;
 			sourceTree = "<group>";
@@ -169,7 +176,8 @@
 				2F49BF6B1C3B057900DD8B32 /* GUI */,
 				2F49BF6A1C3B052000DD8B32 /* GoldAPI */,
 				2F82431B1C3FAD8900E2986A /* Controllers */,
-				2F49BF661C37BDF900DD8B32 /* NotificationScheduler.swift */,
+				2F49BF661C37BDF900DD8B32 /* GDNotificationScheduler.swift */,
+				2FE8E76F1C55D4780062602C /* GDEventExporter.swift */,
 				2F73B4B61C33A7C200C78204 /* Info.plist */,
 			);
 			path = GoldDigger;
@@ -206,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				2F8243201C40B52C00E2986A /* GDClass.swift */,
+				2FE8E76D1C55CE480062602C /* GDSection.swift */,
 				2F82432C1C40EB3400E2986A /* GDQuarter.swift */,
 			);
 			name = Models;
@@ -495,15 +504,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F82431D1C40ACC200E2986A /* ScheduleTableViewController.swift in Sources */,
-				2F49BF671C37BDF900DD8B32 /* NotificationScheduler.swift in Sources */,
+				2F49BF671C37BDF900DD8B32 /* GDNotificationScheduler.swift in Sources */,
 				2FC103F51C34DF2E001D5FA0 /* GDRegistrationInfo.swift in Sources */,
+				2FE8E7701C55D4780062602C /* GDEventExporter.swift in Sources */,
 				2F73B4A91C33A7C200C78204 /* AppDelegate.swift in Sources */,
 				2F82431F1C40AE0800E2986A /* GDClassSchedule.swift in Sources */,
 				2F82432D1C40EB3400E2986A /* GDQuarter.swift in Sources */,
 				2FC103F91C34E9ED001D5FA0 /* Common.swift in Sources */,
 				2F49BF691C37C11F00DD8B32 /* GDPrameterParser.swift in Sources */,
 				2F82432F1C42FF6900E2986A /* GDPageRequesterr.swift in Sources */,
+				2FE8E76C1C55BB070062602C /* GDClassTableViewCell.swift in Sources */,
 				2FC476291C33B603000E2EF0 /* SettingViewController.swift in Sources */,
+				2FE8E76E1C55CE480062602C /* GDSection.swift in Sources */,
 				2FC4762B1C33C1FF000E2EF0 /* GDAccountManager.swift in Sources */,
 				2F8243211C40B52C00E2986A /* GDClass.swift in Sources */,
 				2F8243271C40E0BF00E2986A /* GDQuarterManager.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  NotificationScheduler.swift
+//  GDNotificationScheduler.swift
 //  GoldDigger
 //
 //  Created by Tyler Weimin Ouyang on 1/2/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NotificationScheduler: NSObject {
+class GDNotificationScheduler: NSObject {
   
   func createNotificationFor(date date: NSDate) {
     let notification = UILocalNotification()
