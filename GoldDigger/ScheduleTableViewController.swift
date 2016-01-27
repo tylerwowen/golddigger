@@ -34,10 +34,7 @@ class ScheduleTableViewController: UIViewController, UITableViewDataSource, UITa
   
   func loadData() {
     showIndicator()
-    quarterManager.getCurrentQuarter(onComplete: nil)
-      .continueWithSuccessBlock { (task: BFTask!) -> BFTask in
-        return self.classSchedule.classOfCurrentQuarter(onComplete: nil)
-      }
+    classSchedule.classOfCurrentQuarter(onComplete: nil)
       .continueWithBlock { (task: BFTask!) -> AnyObject? in
         if task.error != nil {
           showDefaultAlert("Sorry", message: "Not able to get your schedule. Please check if you are already logged in.", actionTitle: "OK")
@@ -89,26 +86,26 @@ class ScheduleTableViewController: UIViewController, UITableViewDataSource, UITa
   }
   
   func startExportingEvents(action: UIAlertAction) -> Void {
-
+    
     if classSchedule.numOfClasses() == 0 {
       showDefaultAlert("Sorry",
         message: "You don't have any classes to export yest.",
         actionTitle: "OK")
     }
     else {
-      exporter = GDEventExporter(with: classSchedule.getClassArr(),
-        quarter: quarterManager.currentQuarter!,
-        delegate: self)
-      
+      exporter = GDEventExporter()
+      exporter.delegate = self
       exporter.checkPermission({ () -> Void in
         self.showIndicator()
-        
-        if self.exporter.foundDuplication() {
-          self.askToOverWrite()
-        }
-        else {
-          self.exporter.export()
-          self.hideIndicator()
+        self.exporter.prepareData()
+          .continueWithBlock { (task: BFTask!) -> AnyObject? in
+            if self.exporter.foundDuplication() {
+              self.askToOverWrite()
+            }
+            else {
+              self.exporter.export()
+            }
+            return nil
         }
         }, onFailure: { (error) -> Void in
           if error!.code == 4 {
@@ -122,7 +119,11 @@ class ScheduleTableViewController: UIViewController, UITableViewDataSource, UITa
   func askToOverWrite() {
     let alerController = UIAlertController(title: "Did you want to overwrite?", message: "You already exported them before!", preferredStyle: .Alert)
     let addToCalendarAction  = UIAlertAction(title: "YES!!", style: .Default, handler: overwrite)
-    let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+    let cancelAction = UIAlertAction(title: "Cancel",
+      style: .Cancel){
+        (action) -> Void in
+        self.hideIndicator()
+    }
 
     alerController.addAction(addToCalendarAction)
     alerController.addAction(cancelAction)
@@ -134,7 +135,6 @@ class ScheduleTableViewController: UIViewController, UITableViewDataSource, UITa
   func overwrite(action: UIAlertAction) -> Void {
     exporter.removeDuplicates()
     exporter.export()
-    hideIndicator()
   }
   
   func showIndicator() {
@@ -163,12 +163,14 @@ class ScheduleTableViewController: UIViewController, UITableViewDataSource, UITa
   
   func didFinishTask() -> Void {
     showDefaultAlert("Success!", message: "Your schedule is added to your calendar", actionTitle: "Nice!")
+    hideIndicator()
   }
   
   func didFailTask(error: NSError) -> Void {
     showDefaultAlert("Oops", message: "Something bad happened.", actionTitle: "OK")
+    hideIndicator()
   }
-
+  
   
   /*
   // Override to support rearranging the table view.

@@ -6,25 +6,18 @@
 //  Copyright © 2016 Tyler Ouyang. All rights reserved.
 //
 
-import UIKit
+import Bolts
 import EventKit
+import UIKit
 
 class GDEventExporter: NSObject {
   
   var classArr:[GDClass]!
   var quarter: GDQuarter!
   var delegate: GDTaskDelegate!
-  var store = EKEventStore()
+  let store = EKEventStore()
   let calendar = NSCalendar.currentCalendar()
   let notes = "CreatedByGoldDigger@tylero"
-  
-  
-  init(with classArr: [GDClass], quarter: GDQuarter, delegate: GDTaskDelegate) {
-    super.init()
-    self.classArr = classArr
-    self.quarter = quarter
-    self.delegate = delegate
-  }
   
   func checkPermission(onSuccess: () -> Void, onFailure: failureHandler) {
     store.requestAccessToEntityType(EKEntityType.Event) {
@@ -92,6 +85,18 @@ class GDEventExporter: NSObject {
       delegate.didFailTask(error)
     }
     delegate.didFinishTask()
+  }
+  
+  func prepareData() -> BFTask {
+    classArr = GDClassSchedule.sharedInstance.getClassArr()
+    
+    let quarterManager = GDQuarterManager.sharedInstance
+    return quarterManager.getCurrentQuarter(onComplete: nil)
+      .continueWithSuccessBlock {
+        (task: BFTask!) -> BFTask in
+        self.quarter = quarterManager.currentQuarter
+        return task
+      }
   }
   
   func assembleEvent(forMeeting meeting: GDSection) -> EKEvent{

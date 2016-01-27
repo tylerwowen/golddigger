@@ -34,7 +34,7 @@ class GDClassSchedule: NSObject {
   var classArr = Array<GDClass>()
   
   func classOfCurrentQuarter(onComplete completeBlock: completeHandler?) -> BFTask {
-    return getHTML().continueWithBlock { (task: BFTask!) -> AnyObject? in
+    return prepareData().continueWithBlock { (task: BFTask!) -> AnyObject? in
       if task.error != nil {
         if completeBlock != nil {completeBlock!(nil, task.error)}
       }
@@ -49,7 +49,7 @@ class GDClassSchedule: NSObject {
   
   // MARK: - Networking
   
-  func getHTML() -> BFTask {
+  func prepareData() -> BFTask {
     let task = BFTaskCompletionSource()
     // check if already feched
     if (htmlData != nil) {
