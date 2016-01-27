@@ -12,8 +12,8 @@ import EventKit
 class GDSection: NSObject {
   var courseTitle: String!
 
-  var location: String!
-  var instructor: String!
+  var location: String?
+  var instructor: String?
   
   var days: [EKRecurrenceDayOfWeek]!
   var daysStr: String!

@@ -9,15 +9,20 @@
 import Bolts
 import UIKit
 
-class ScheduleTableViewController: UITableViewController {
+class ScheduleTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, GDTaskDelegate {
   
   let classSchedule = GDClassSchedule.sharedInstance
   let quarterManager = GDQuarterManager.sharedInstance
   var exporter: GDEventExporter!
   
+  var loadingView: UIView!
+  @IBOutlet var tableView: UITableView!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    createLoadingView()
     loadData()
+    
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -28,6 +33,7 @@ class ScheduleTableViewController: UITableViewController {
   }
   
   func loadData() {
+    showIndicator()
     quarterManager.getCurrentQuarter(onComplete: nil)
       .continueWithSuccessBlock { (task: BFTask!) -> BFTask in
         return self.classSchedule.classOfCurrentQuarter(onComplete: nil)
@@ -39,30 +45,37 @@ class ScheduleTableViewController: UITableViewController {
         else if task.result != nil {
           self.tableView.reloadData()
         }
+        self.hideIndicator()
         return nil
     }
   }
   
   // MARK: - Table view data source
   
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    // #warning Incomplete implementation, return the number of sections
+  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return 1
   }
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    // #warning Incomplete implementation, return the number of rows
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return classSchedule.numOfClasses()
   }
   
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("classCell", forIndexPath: indexPath) as! GDClassTableViewCell
     
     cell.bind(with: classSchedule.getClassArr()[indexPath.row])
     
     return cell
   }
+  
+  // MARK: - TableView Delegate
+  
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    tableView.deselectRowAtIndexPath(indexPath, animated: false)
+  }
+  
+  // MARK: - Export class
   
   @IBAction func exportToCalendar(sender: UIBarButtonItem) {
     let alerController = UIAlertController(title: "Choose an option", message: nil, preferredStyle: .ActionSheet)
@@ -83,19 +96,25 @@ class ScheduleTableViewController: UITableViewController {
         actionTitle: "OK")
     }
     else {
-      exporter = GDEventExporter(with: classSchedule.getClassArr(), quarter: quarterManager.currentQuarter!)
+      exporter = GDEventExporter(with: classSchedule.getClassArr(),
+        quarter: quarterManager.currentQuarter!,
+        delegate: self)
       
       exporter.checkPermission({ () -> Void in
+        self.showIndicator()
+        
         if self.exporter.foundDuplication() {
           self.askToOverWrite()
         }
         else {
-          self.exporter.export(self.exportResultHandler)
+          self.exporter.export()
+          self.hideIndicator()
         }
         }, onFailure: { (error) -> Void in
           if error!.code == 4 {
             showDefaultAlert("Sorry", message: "I cannot export without your permission", actionTitle: "OK")
           }
+          
       })
     }
   }
@@ -114,17 +133,42 @@ class ScheduleTableViewController: UITableViewController {
   
   func overwrite(action: UIAlertAction) -> Void {
     exporter.removeDuplicates()
-    exporter.export(self.exportResultHandler)
+    exporter.export()
+    hideIndicator()
   }
   
-  func exportResultHandler(success: AnyObject?, error: NSError?) -> Void {
-    if error == nil {
-      showDefaultAlert("Success!", message: "Your schedule is added to your calendar", actionTitle: "Nice!")
-    }
-    else {
-      showDefaultAlert("Oops", message: "Something bad happened.", actionTitle: "OK")
-    }
+  func showIndicator() {
+    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+      self.loadingView.hidden = false
+    })
   }
+  
+  func hideIndicator() {
+    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+      self.loadingView.hidden = true
+    })
+  }
+  
+  func createLoadingView() {
+    let spinner = UIActivityIndicatorView(activityIndicatorStyle: .White)
+    loadingView = UIView(frame: view.frame)
+    loadingView.backgroundColor = UIColor.blackColor()
+    loadingView.alpha = 0.4
+    loadingView.center = view.center
+    spinner.center = loadingView.center
+    loadingView.addSubview(spinner)
+    view.addSubview(loadingView)
+    spinner.startAnimating()
+  }
+  
+  func didFinishTask() -> Void {
+    showDefaultAlert("Success!", message: "Your schedule is added to your calendar", actionTitle: "Nice!")
+  }
+  
+  func didFailTask(error: NSError) -> Void {
+    showDefaultAlert("Oops", message: "Something bad happened.", actionTitle: "OK")
+  }
+
   
   /*
   // Override to support rearranging the table view.
@@ -141,14 +185,12 @@ class ScheduleTableViewController: UITableViewController {
   }
   */
   
-  /*
   // MARK: - Navigation
   
-  // In a storyboard-based application, you will often want to do a little preparation before navigation
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-  // Get the new view controller using segue.destinationViewController.
-  // Pass the selected object to the new view controller.
+    let controller = segue.destinationViewController as! ClassDetailViewController
+    let index = tableView.indexPathForSelectedRow?.row
+    controller.presentedClass = classSchedule.getClassArr()[index!]
   }
-  */
   
 }

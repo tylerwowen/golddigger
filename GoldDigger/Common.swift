@@ -20,15 +20,15 @@ typealias failureHandler = (NSError?) -> Void
 typealias completeHandler = (AnyObject?, NSError?) -> Void
 
 func showDefaultAlert(title: String, message: String, actionTitle: String) {
-  let alert = UIAlertController(title: title,
-    message: message,
-    preferredStyle: UIAlertControllerStyle.Alert)
-  let defaultAction = UIAlertAction(title: actionTitle,
-    style: UIAlertActionStyle.Default,
-    handler: nil)
-  alert.addAction(defaultAction)
-  
   dispatch_async(dispatch_get_main_queue(), { () -> Void in
+    let alert = UIAlertController(title: title,
+      message: message,
+      preferredStyle: UIAlertControllerStyle.Alert)
+    let defaultAction = UIAlertAction(title: actionTitle,
+      style: UIAlertActionStyle.Default,
+      handler: nil)
+    alert.addAction(defaultAction)
+    
     UIApplication.sharedApplication().keyWindow?.rootViewController?
       .presentViewController(alert, animated: true, completion: nil)
   })
