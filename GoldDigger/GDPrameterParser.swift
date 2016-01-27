@@ -15,7 +15,7 @@ class GDPrameterParser: NSObject {
     if let doc = Kanna.HTML(html: html, encoding: NSUTF8StringEncoding) {
       
       var parametersDict = Dictionary<String, AnyObject>()
-      for var i = 0; i < 6; i++ {
+      for var i = 0; i < parameters.count; i++ {
         let key = parameters[i]
         let value = doc.at_css("#" + key)?["value"]
         parametersDict[key] = value != nil ? value : ""

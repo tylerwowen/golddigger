@@ -13,29 +13,39 @@ class GDEventExporter: NSObject {
   
   var classArr:[GDClass]!
   var quarter: GDQuarter!
+  var delegate: GDTaskDelegate!
   var store = EKEventStore()
   let calendar = NSCalendar.currentCalendar()
   let notes = "CreatedByGoldDigger@tylero"
-  init(with classArr: [GDClass], quarter: GDQuarter) {
+  
+  
+  init(with classArr: [GDClass], quarter: GDQuarter, delegate: GDTaskDelegate) {
     super.init()
     self.classArr = classArr
     self.quarter = quarter
+    self.delegate = delegate
   }
   
   func checkPermission(onSuccess: () -> Void, onFailure: failureHandler) {
-    store.requestAccessToEntityType(EKEntityType.Event) { (granted, error) -> Void in
+    store.requestAccessToEntityType(EKEntityType.Event) {
+      (granted, error) -> Void in
       if granted {
         onSuccess()
       }
       else {
-        let error = NSError(domain: "GoldDigger", code: 4, userInfo: nil)
+        let error = NSError(
+          domain: "GoldDigger",
+          code: 20,
+          userInfo: ["Calendar error":"No access to user calendar"])
         onFailure(error)
       }
     }
   }
   
   func foundDuplication() -> Bool {
-    let predicate = store.predicateForEventsWithStartDate(quarter.start!, endDate: quarter.end!, calendars: [store.defaultCalendarForNewEvents])
+    let predicate = store.predicateForEventsWithStartDate(quarter.start!,
+      endDate: quarter.end!,
+      calendars: [store.defaultCalendarForNewEvents])
     let events = store.eventsMatchingPredicate(predicate)
     for event in events {
       if event.notes == notes {
@@ -46,7 +56,9 @@ class GDEventExporter: NSObject {
   }
   
   func removeDuplicates() {
-    let predicate = store.predicateForEventsWithStartDate(quarter.start!, endDate: quarter.end!, calendars: [store.defaultCalendarForNewEvents])
+    let predicate = store.predicateForEventsWithStartDate(quarter.start!,
+      endDate: quarter.end!,
+      calendars: [store.defaultCalendarForNewEvents])
     let events = store.eventsMatchingPredicate(predicate)
     do {
       for event in events {
@@ -60,7 +72,7 @@ class GDEventExporter: NSObject {
     }
   }
   
-  func export(onComplete: completeHandler) {
+  func export() {
     do {
       for (var i = 0; i < classArr.count; i++) {
         
@@ -73,10 +85,13 @@ class GDEventExporter: NSObject {
       }
       try store.commit()
     } catch {
-      let error = NSError(domain: "GoldDigger", code: 5, userInfo: nil)
-      onComplete(nil, error)
+      let error = NSError(
+        domain: "GoldDigger",
+        code: 21,
+        userInfo: ["Calendar error":"Failed to store data."])
+      delegate.didFailTask(error)
     }
-    onComplete(nil, nil)
+    delegate.didFinishTask()
   }
   
   func assembleEvent(forMeeting meeting: GDSection) -> EKEvent{
@@ -114,7 +129,11 @@ class GDEventExporter: NSObject {
     let start = calendar.nextDateAfterDate(quarter.start!,
       matchingComponents: mergedComponents,
       options: .MatchNextTime)!
-    let end = calendar.dateBySettingHour(meeting.end.hour, minute: meeting.end.minute, second: 0, ofDate: start, options: .MatchNextTime)!
+    let end = calendar.dateBySettingHour(meeting.end.hour,
+      minute: meeting.end.minute,
+      second: 0,
+      ofDate: start,
+      options: .MatchNextTime)!
     
     return (start, end)
   }

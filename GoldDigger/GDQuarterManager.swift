@@ -47,10 +47,10 @@ class GDQuarterManager: NSObject {
   class func assembleRequestData(parameterKeys: [String], htmlData: NSData) -> [String: AnyObject] {
     let params = Array(parameterKeys[0..<5])
     let paramDict = GDPrameterParser.extractParameters(params, fromHTML: htmlData)
-    return assembleQuarterInfo(paramDict, htmlData: htmlData)
+    return assembleLatestQuarterInfo(paramDict, htmlData: htmlData)
   }
   
-  class func assembleQuarterInfo(var parameters:[String: AnyObject], htmlData: NSData) -> [String: AnyObject]{
+  class func assembleLatestQuarterInfo(var parameters:[String: AnyObject], htmlData: NSData) -> [String: AnyObject]{
     let dropDownName = "ctl00$pageContent$quarterDropDown"
     parameters["__EVENTTARGET"] = dropDownName
     parameters[dropDownName] = findLatestQuarterId(htmlData)

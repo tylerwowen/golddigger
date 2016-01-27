@@ -21,7 +21,7 @@ class GDRegistrationInfo: NSObject {
   
   var currentQuaterData: NSData?
   // May be the same as the `currentQuarterData`
-  var latestQuaterData: NSData?
+  var futureQuaterData: NSData?
   
   private let passIDs = [
     1: "#pageContent_PassOneLabel",
@@ -47,12 +47,44 @@ class GDRegistrationInfo: NSObject {
   
   var passTimeArr = Array<NSDate>()
   
-  func passTimeOfLatestQuarter(onComplete completeBlock: completeHandler?) {
-    getHTMLOfLatestQuarter().continueWithBlock { (task: BFTask!) -> AnyObject? in
+  func currentQuarter() -> BFTask {
+    let newTask = BFTaskCompletionSource()
+    prepareData().continueWithBlock { (task: BFTask!) -> AnyObject? in
+      if task.error != nil {
+        newTask.setError(task.error!)
+      }
+      else {
+        newTask.setResult(self.decorateQuarter(
+          withData: self.currentQuaterData!,
+          andCSS: GDQuarterManager.currentCSS))
+      }
+      return nil
+    }
+    return newTask.task
+  }
+  
+  func futureQuarter() -> BFTask {
+    let newTask = BFTaskCompletionSource()
+    prepareComprehensiveData().continueWithBlock { (task: BFTask!) -> AnyObject? in
+      if task.error != nil {
+        newTask.setError(task.error!)
+      }
+      else {
+        newTask.setResult(self.decorateQuarter(
+          withData: self.futureQuaterData!,
+          andCSS: GDQuarterManager.latestCSS))
+      }
+      return nil
+    }
+    return newTask.task
+  }
+  
+  func passTimeOfFutureQuarter(onComplete completeBlock: completeHandler?) {
+    prepareComprehensiveData().continueWithBlock { (task: BFTask!) -> AnyObject? in
       if task.error != nil {
         if completeBlock != nil {completeBlock!(nil, task.error)}
       }
-      else if task.result != nil {
+      else if self.futureQuaterData != nil {
         if completeBlock != nil {completeBlock!(self.getPassTimeArr(), nil)}
       }
       return nil
@@ -60,76 +92,81 @@ class GDRegistrationInfo: NSObject {
   }
   
   func lastDayToDrop(onComplete completeBlock: completeHandler?) {
-    getDefaultHTML().continueWithBlock { (task: BFTask!) -> AnyObject? in
+    prepareData().continueWithBlock { (task: BFTask!) -> AnyObject? in
       if task.error != nil {
         if completeBlock != nil {completeBlock!(nil, task.error)}
       }
-      else if task.result != nil {
-        if completeBlock != nil {completeBlock!(self.parseDateForId(QuarterInfoIdDs.drop, withData: self.currentQuaterData!), nil)}
+      else if self.currentQuaterData != nil {
+        if completeBlock != nil {
+          completeBlock!(self.parseDateForId(QuarterInfoIdDs.drop, withData: self.currentQuaterData!), nil)
+        }
       }
       return nil
     }
-  }
-  
-  func currentQuarter() -> BFTask {
-    let newTask = BFTaskCompletionSource()
-    getHTMLOfLatestQuarter().continueWithBlock { (task: BFTask!) -> AnyObject? in
-      if task.error != nil {
-        newTask.setError(task.error!)
-      }
-      else {
-        newTask.setResult(self.decorateQuarter(withData: self.currentQuaterData!, andCSS: GDQuarterManager.currentCSS))
-      }
-      return nil
-    }
-    return newTask.task
-  }
-  
-  func latestQuarter() -> BFTask {
-    let newTask = BFTaskCompletionSource()
-    getHTMLOfLatestQuarter().continueWithBlock { (task: BFTask!) -> AnyObject? in
-      if task.error != nil {
-        newTask.setError(task.error!)
-      }
-      else {
-        newTask.setResult(self.decorateQuarter(withData: self.latestQuaterData!, andCSS: GDQuarterManager.latestCSS))
-      }
-      return nil
-    }
-    return newTask.task
   }
   
   // MARK: - Networking request
   
-  func getHTMLOfLatestQuarter() -> BFTask {
+  /**
+  Fetches the current quarter data, and store it in
+  `currentQuaterData`
+  
+  - returns: a BFTask
+  */
+  func prepareData() -> BFTask {
     let task = BFTaskCompletionSource()
     // check if already feched
-    if (latestQuaterData != nil) {
-      task.setResult(latestQuaterData)
+    if (currentQuaterData != nil) {
+      task.setResult(currentQuaterData)
       return task.task
     }
-    
-    return getDefaultHTML().continueWithBlock { (task: BFTask!) -> BFTask in
-      if task.error != nil {
-        // Log in and retry
-        return self.accountManager.login(onSuccess: nil, onFail: nil).continueWithSuccessBlock({ (task: BFTask!) -> BFTask in
-          return self.getDefaultHTML()
-        })
-      }
-      else {
-        return task
-      }
-      }.continueWithSuccessBlock { (task: BFTask!) -> AnyObject? in
-        // Store html data
-        self.currentQuaterData = (task.result as! NSData)
-        if GDQuarterManager.isCurentLatest(self.currentQuaterData!) {
-          self.latestQuaterData = self.currentQuaterData!
+    return getDefaultHTML()
+      .continueWithBlock { (task: BFTask!) -> BFTask in
+        if task.error != nil {
+          // Log in and retry
+          return self.accountManager.login(onSuccess: nil, onFail: nil)
+            .continueWithSuccessBlock({ (task: BFTask!) -> BFTask in
+              return self.getDefaultHTML()
+            })
+        }
+        else {
           return task
         }
-        else {// get the HTML for next quarter
-          return self.getHTMLOfNextQuarter()
-        }
+      }
+      .continueWithSuccessBlock { (task: BFTask!) -> AnyObject? in
+        // Store html data
+        self.currentQuaterData = (task.result as! NSData)
+        return task
     }
+  }
+  
+  /**
+   If a future quarter is available, fetches the
+   future quarter data and update `latestQuarterData`
+   
+   - returns: a BFTask
+   */
+  func prepareComprehensiveData() -> BFTask {
+    let newTask = BFTaskCompletionSource()
+    // check if already feched
+    if (futureQuaterData != nil) {
+      newTask.setResult(futureQuaterData)
+      return newTask.task
+    }
+    return prepareData()
+      .continueWithSuccessBlock { (task: BFTask!) -> AnyObject? in
+        if GDQuarterManager.isCurentLatest(self.currentQuaterData!) {
+          let error = NSError(
+            domain: "GoldDigger",
+            code: 11,
+            userInfo: ["Data not available":"No newer quarter data found"])
+          newTask.setError(error)
+          return newTask.task
+        }
+        else {// get the HTML for next quarter
+          return self.getFutureQuarterHTML()
+        }
+      }
   }
   
   /**
@@ -139,11 +176,6 @@ class GDRegistrationInfo: NSObject {
    */
   func getDefaultHTML() -> BFTask {
     let task = BFTaskCompletionSource()
-    // check if already feched
-    if (currentQuaterData != nil) {
-      task.setResult(currentQuaterData)
-      return task.task
-    }
     Alamofire.request(.GET, rootURL)
       .responseData { response in
         if response.result.isFailure {
@@ -154,27 +186,43 @@ class GDRegistrationInfo: NSObject {
           task.setResult(response.data)
         }
         else {
-          // invalid user crednetial
-          let error = NSError(domain: "GoldDigger", code: 2, userInfo: nil)
+          let error = NSError(
+            domain: "GoldDigger",
+            code: 10,
+            userInfo: ["Data not available":"Not logged in"])
           task.setError(error)
         }
     }
     return task.task
   }
   
-  func getHTMLOfNextQuarter() -> BFTask {
+  /**
+   When there is a future quarter avaialble, get it.
+   
+   It will automatically call logout on success to clean up GOLD state.
+   GOLD stores the state of current viewing quarter. If logout is not
+   called, other objects my get wrong default page.
+   
+   - returns: a BFTask
+   */
+  func getFutureQuarterHTML() -> BFTask {
     let task = BFTaskCompletionSource()
-    Alamofire.request(.POST, rootURL, parameters: GDQuarterManager.assembleRequestData(parameterKeys, htmlData: currentQuaterData!))
+    Alamofire.request(.POST, rootURL,
+      parameters: GDQuarterManager.assembleRequestData(parameterKeys, htmlData: currentQuaterData!))
       .responseData { response in
         if response.result.isFailure {
           task.setError(response.result.error!)
         }
         else if response.data != nil && GDQuarterManager.isCurentLatest(response.data!) {
-          self.latestQuaterData = response.data
+          self.futureQuaterData = response.data
+          self.accountManager.logout()
           task.setResult(response.data)
         }
         else {
-          let error = NSError(domain: "GoldDigger", code: 3, userInfo: nil)
+          let error = NSError(
+            domain: "GoldDigger",
+            code: 10,
+            userInfo: ["Data not available":"Not logged in"])
           task.setError(error)
         }
     }
@@ -195,7 +243,7 @@ class GDRegistrationInfo: NSObject {
   }
   
   func parsePassTime(number: Int) -> NSDate? {
-    if let doc = Kanna.HTML(html: latestQuaterData!, encoding: NSUTF8StringEncoding) {
+    if let doc = Kanna.HTML(html: futureQuaterData!, encoding: NSUTF8StringEncoding) {
       
       var dateString = doc.at_css(passIDs[number]!)?.text
       dateString = dateString?.componentsSeparatedByString("-")[0].trim()

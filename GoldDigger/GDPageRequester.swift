@@ -8,6 +8,6 @@
 
 import UIKit
 
-class GDPageRequesterr: NSObject {
+class GDPageRequester: NSObject {
 
 }
