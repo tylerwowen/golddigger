@@ -12,10 +12,18 @@ import Kanna
 import UIKit
 
 private let requestKeys = [
-  "__LASTFOCUS", "__VIEWSTATE", "__VIEWSTATEGENERATOR", "__EVENTTARGET", "__EVENTARGUMENT",
-  "__EVENTVALIDATION", "ctl00$pageContent$userNameText", "ctl00$pageContent$passwordText",
-  "ctl00$pageContent$loginButton.x", "ctl00$pageContent$loginButton.y",
-  "ctl00$pageContent$PermPinLogin$userNameText", "ctl00$pageContent$PermPinLogin$passwordText"]
+  "__LASTFOCUS",
+  "__VIEWSTATE",
+  "__VIEWSTATEGENERATOR",
+  "__EVENTTARGET",
+  "__EVENTARGUMENT",
+  "__EVENTVALIDATION",
+  "ctl00$pageContent$userNameText",
+  "ctl00$pageContent$passwordText",
+  "ctl00$pageContent$loginButton.x",
+  "ctl00$pageContent$loginButton.y",
+  "ctl00$pageContent$PermPinLogin$userNameText",
+  "ctl00$pageContent$PermPinLogin$passwordText"]
 
 enum credentialKeys {
   static let netID = "netIDKey", password = "passwordKey"
@@ -69,14 +77,16 @@ class GDAccountManager: NSObject {
     userCredentials.synchronize()
   }
   
+  // MARK: - Log in/out
+  
   /**
-   Log in to GOLD with provided credentials
-   
-   - parameter netId:    GOLD NetID
-   - parameter password: GOLD Password
-   - parameter successBlock: success block
-   - parameter failureBlock: failure block, called when log in failed
-   */
+  Log in to GOLD with provided credentials
+  
+  - parameter netId:    GOLD NetID
+  - parameter password: GOLD Password
+  - parameter successBlock: success block
+  - parameter failureBlock: failure block, called when log in failed
+  */
   func login(netID netID: String, password: String,
     onSuccess successBlock: successBlockNil?,
     onFail failureBlock: failureHandler?) -> BFTask {
@@ -91,19 +101,19 @@ class GDAccountManager: NSObject {
       (task: BFTask!) -> BFTask in
       let parameters = task.result as! [String: AnyObject]
       return self.loginWithParameters(parameters)
-    }.continueWithBlock {
-      (task: BFTask!) -> AnyObject? in
-      if (task.error != nil) {
-        if failureBlock != nil {failureBlock!(task.error)}
-      }
-      else {
-        self.valid = true
-        if successBlock != nil {successBlock!()}
-      }
-      return task
+      }.continueWithBlock {
+        (task: BFTask!) -> AnyObject? in
+        if (task.error != nil) {
+          if failureBlock != nil {failureBlock!(task.error)}
+        }
+        else {
+          self.valid = true
+          if successBlock != nil {successBlock!()}
+        }
+        return task
     }
   }
-
+  
   func loginWithParameters(parameters: [String: AnyObject]) -> BFTask {
     let task = BFTaskCompletionSource()
     Alamofire.request(.POST, rootURL, parameters: parameters)
@@ -115,7 +125,10 @@ class GDAccountManager: NSObject {
           task.setResult(nil)
         }
         else {
-          let error = NSError(domain: "GoldDigger", code: 1, userInfo: nil)
+          let error = NSError(
+            domain: "GoldDigger",
+            code: 1,
+            userInfo: ["Login error":"Invalid credential"])
           task.setError(error)
         }
     }
@@ -126,6 +139,8 @@ class GDAccountManager: NSObject {
     Alamofire.request(.GET, "https://my.sa.ucsb.edu/gold/Logout.aspx")
   }
   
+  // MARK: - Helpers
+  
   func downloadLoginPage(url: String) -> BFTask {
     let task = BFTaskCompletionSource()
     Alamofire.request(.GET, url)
@@ -133,7 +148,10 @@ class GDAccountManager: NSObject {
         if response.result.isSuccess {
           task.setResult(self.assembleRequestData(response.data!))
         } else {
-          let error = NSError(domain: "GoldDigger", code: 0, userInfo: nil)
+          let error = NSError(
+            domain: "GoldDigger",
+            code: 0,
+            userInfo: ["Network error":"Failed to download login page"])
           task.setError(error)
         }
     }

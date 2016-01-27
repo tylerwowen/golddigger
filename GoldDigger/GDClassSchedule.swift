@@ -88,8 +88,10 @@ class GDClassSchedule: NSObject {
           task.setResult(response.data)
         }
         else {
-          // invalid user crednetial
-          let error = NSError(domain: "GoldDigger", code: 2, userInfo: nil)
+          let error = NSError(
+            domain: "GoldDigger",
+            code: 10,
+            userInfo: ["Data not available":"Not logged in"])
           task.setError(error)
         }
     }
@@ -116,9 +118,5 @@ class GDClassSchedule: NSObject {
   func numOfClasses() -> Int {
     
     return classArr.count
-  }
-  
-  func parseSchedule() {
-    
   }
 }
