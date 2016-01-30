@@ -32,7 +32,6 @@
 		2FC4762B1C33C1FF000E2EF0 /* GDAccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC4762A1C33C1FF000E2EF0 /* GDAccountManager.swift */; };
 		2FD10AF51C574DBA00E575ED /* GDBackgroundTaskHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD10AF41C574DBA00E575ED /* GDBackgroundTaskHandler.swift */; };
 		2FD10AF71C574F2900E575ED /* GDClassAdder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD10AF61C574F2900E575ED /* GDClassAdder.swift */; };
-		2FE215391C5B5EDD00A2A044 /* AirshipConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FE215381C5B5EDD00A2A044 /* AirshipConfig.plist */; };
 		2FE8E76C1C55BB070062602C /* GDClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8E76B1C55BB070062602C /* GDClassTableViewCell.swift */; };
 		2FE8E76E1C55CE480062602C /* GDSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8E76D1C55CE480062602C /* GDSection.swift */; };
 		2FE8E7701C55D4780062602C /* GDEventExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8E76F1C55D4780062602C /* GDEventExporter.swift */; };
@@ -92,7 +91,6 @@
 		2FC4762A1C33C1FF000E2EF0 /* GDAccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDAccountManager.swift; sourceTree = "<group>"; };
 		2FD10AF41C574DBA00E575ED /* GDBackgroundTaskHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDBackgroundTaskHandler.swift; sourceTree = "<group>"; };
 		2FD10AF61C574F2900E575ED /* GDClassAdder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDClassAdder.swift; sourceTree = "<group>"; };
-		2FE215381C5B5EDD00A2A044 /* AirshipConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AirshipConfig.plist; sourceTree = "<group>"; };
 		2FE8E76B1C55BB070062602C /* GDClassTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDClassTableViewCell.swift; sourceTree = "<group>"; };
 		2FE8E76D1C55CE480062602C /* GDSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDSection.swift; sourceTree = "<group>"; };
 		2FE8E76F1C55D4780062602C /* GDEventExporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDEventExporter.swift; sourceTree = "<group>"; };
@@ -153,7 +151,6 @@
 				2F73B4B31C33A7C200C78204 /* LaunchScreen.storyboard */,
 				2F73B4AE1C33A7C200C78204 /* Main.storyboard */,
 				2F73B4B11C33A7C200C78204 /* Assets.xcassets */,
-				2FE215381C5B5EDD00A2A044 /* AirshipConfig.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -439,7 +436,6 @@
 				2F73B4B51C33A7C200C78204 /* LaunchScreen.storyboard in Resources */,
 				2F73B4B21C33A7C200C78204 /* Assets.xcassets in Resources */,
 				2F73B4B01C33A7C200C78204 /* Main.storyboard in Resources */,
-				2FE215391C5B5EDD00A2A044 /* AirshipConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -742,8 +738,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = GoldDigger/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -751,6 +747,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = TO.GoldDigger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
