@@ -17,12 +17,13 @@ class GDRegistrationInfo: NSObject {
   static let sharedInstance = GDRegistrationInfo()
   
   private let accountManager = GDAccountManager.sharedInstance
+  private let quarterManager = GDQuarterManager.sharedInstance
   private let rootURL = "https://my.sa.ucsb.edu/gold/RegistrationInfo.aspx"
   
   var currentQuaterData: NSData?
-  // May be the same as the `currentQuarterData`
   var futureQuaterData: NSData?
-  
+  var passTimeArr = Array<NSDate>()
+
   private let passIDs = [
     1: "#pageContent_PassOneLabel",
     2: "#pageContent_PassTwoLabel",
@@ -32,7 +33,8 @@ class GDRegistrationInfo: NSObject {
   enum QuarterInfoIdDs {
     static let start = "#pageContent_FirstDayInstructionLabel",
     end = "#pageContent_LastDayInstructionLabel",
-    drop = "#pageContent_DropDeadlineLabel"
+    drop = "#pageContent_DropDeadlineLabel",
+    name = "#pageContent_quarterStatusLabel"
   }
   
   private let parameterKeys = [
@@ -45,8 +47,6 @@ class GDRegistrationInfo: NSObject {
     "ctl00$pageContent$sessionDropDown"
   ]
   
-  var passTimeArr = Array<NSDate>()
-  
   func currentQuarter() -> BFTask {
     let newTask = BFTaskCompletionSource()
     prepareData().continueWithBlock { (task: BFTask!) -> AnyObject? in
@@ -54,9 +54,7 @@ class GDRegistrationInfo: NSObject {
         newTask.setError(task.error!)
       }
       else {
-        newTask.setResult(self.decorateQuarter(
-          withData: self.currentQuaterData!,
-          andCSS: GDQuarterManager.currentCSS))
+        newTask.setResult(self.decorateQuarter(withData: self.currentQuaterData!))
       }
       return nil
     }
@@ -70,9 +68,7 @@ class GDRegistrationInfo: NSObject {
         newTask.setError(task.error!)
       }
       else {
-        newTask.setResult(self.decorateQuarter(
-          withData: self.futureQuaterData!,
-          andCSS: GDQuarterManager.latestCSS))
+        newTask.setResult(self.decorateQuarter(withData: self.futureQuaterData!))
       }
       return nil
     }
@@ -124,7 +120,7 @@ class GDRegistrationInfo: NSObject {
       .continueWithBlock { (task: BFTask!) -> BFTask in
         if task.error != nil {
           // Log in and retry
-          return self.accountManager.login(onSuccess: nil, onFail: nil)
+          return self.accountManager.login(onSuccess: nil, onFailure: nil)
             .continueWithSuccessBlock({ (task: BFTask!) -> BFTask in
               return self.getDefaultHTML()
             })
@@ -155,7 +151,7 @@ class GDRegistrationInfo: NSObject {
     }
     return prepareData()
       .continueWithSuccessBlock { (task: BFTask!) -> AnyObject? in
-        if GDQuarterManager.isCurentLatest(self.currentQuaterData!) {
+        if self.quarterManager.isSelectedLatest(self.currentQuaterData!) {
           let error = NSError(
             domain: "GoldDigger",
             code: 11,
@@ -166,7 +162,7 @@ class GDRegistrationInfo: NSObject {
         else {// get the HTML for next quarter
           return self.getFutureQuarterHTML()
         }
-      }
+    }
   }
   
   /**
@@ -199,23 +195,27 @@ class GDRegistrationInfo: NSObject {
   /**
    When there is a future quarter avaialble, get it.
    
-   It will automatically call logout on success to clean up GOLD state.
-   GOLD stores the state of current viewing quarter. If logout is not
+   It will automatically call `changeBackToCurrentQuarter` on success to clean up GOLD state.
+   GOLD stores the state of current viewing quarter. If `changeBackToCurrentQuarter` is not
    called, other objects my get wrong default page.
    
    - returns: a BFTask
    */
   func getFutureQuarterHTML() -> BFTask {
     let task = BFTaskCompletionSource()
+    
     Alamofire.request(.POST, rootURL,
-      parameters: GDQuarterManager.assembleRequestData(parameterKeys, htmlData: currentQuaterData!))
+      parameters: quarterManager.assembleRequestData(parameterKeys,
+        htmlData: currentQuaterData!,
+        id: self.quarterManager.latestQuarterId(withHtmlData: currentQuaterData!)!))
       .responseData { response in
+        
         if response.result.isFailure {
           task.setError(response.result.error!)
         }
-        else if response.data != nil && GDQuarterManager.isCurentLatest(response.data!) {
+        else if response.data != nil && self.quarterManager.isSelectedLatest(response.data!) {
           self.futureQuaterData = response.data
-          self.accountManager.logout()
+          self.changeBackToCurrentQuarter()
           task.setResult(response.data)
         }
         else {
@@ -223,60 +223,83 @@ class GDRegistrationInfo: NSObject {
             domain: "GoldDigger",
             code: 10,
             userInfo: ["Data not available":"Not logged in"])
+          self.changeBackToCurrentQuarter()
           task.setError(error)
+          }
         }
+        return task.task
     }
-    return task.task
-  }
-  
-  
-  // MARK: - Parsing
-  
-  func getPassTimeArr() -> [NSDate] {
-    if passTimeArr.count != 0 {
+    
+    func changeBackToCurrentQuarter() {
+      Alamofire.request(.POST, rootURL,
+        parameters: quarterManager.assembleRequestData(parameterKeys,
+          htmlData: futureQuaterData!,
+          id: quarterManager.selectedQuarterId(withHtmlData: currentQuaterData!)!))
+        .responseData { response in
+          if response.result.isFailure {
+            print(response.result.error!)
+          }
+      }
+    }
+    
+    // MARK: - Parsing
+    
+    func getPassTimeArr() -> [NSDate] {
+      if passTimeArr.count != 0 {
+        return passTimeArr
+      }
+      for var i = 1; i <= 3; i++ {
+        passTimeArr.append(self.parsePassTime(i)!)
+      }
       return passTimeArr
     }
-    for var i = 1; i <= 3; i++ {
-      passTimeArr.append(self.parsePassTime(i)!)
-    }
-    return passTimeArr
-  }
-  
-  func parsePassTime(number: Int) -> NSDate? {
-    if let doc = Kanna.HTML(html: futureQuaterData!, encoding: NSUTF8StringEncoding) {
-      
-      var dateString = doc.at_css(passIDs[number]!)?.text
-      dateString = dateString?.componentsSeparatedByString("-")[0].trim()
-      
-      if dateString != nil {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "M/d/yyyy h:mm a"
-        
-        return dateFormatter.dateFromString(dateString!)
-      }
-    }
-    return nil
-  }
-  
-  func parseDateForId(id: String, withData data: NSData) -> NSDate? {
     
-    if let doc = Kanna.HTML(html: data, encoding: NSUTF8StringEncoding) {
-      let dateString = doc.at_css(id)?.text
-      if dateString != nil {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "M/d/yyyy"
-        dateFormatter.timeZone = NSTimeZone(abbreviation: "PST")
-        return dateFormatter.dateFromString(dateString!)
+    func parsePassTime(number: Int) -> NSDate? {
+      if let doc = Kanna.HTML(html: futureQuaterData!, encoding: NSUTF8StringEncoding) {
+        
+        var dateString = doc.at_css(passIDs[number]!)?.text
+        dateString = dateString?.componentsSeparatedByString("-")[0].trim()
+        
+        if dateString != nil {
+          let dateFormatter = NSDateFormatter()
+          dateFormatter.dateFormat = "M/d/yyyy h:mm a"
+          
+          return dateFormatter.dateFromString(dateString!)
+        }
       }
+      return nil
     }
-    return nil
-  }
-  
-  func decorateQuarter(withData data: NSData, andCSS css: String) -> GDQuarter? {
-    let quarter = GDQuarter()
-    quarter.start = parseDateForId(QuarterInfoIdDs.start, withData: data)
-    quarter.end = parseDateForId(QuarterInfoIdDs.end, withData: data)
-    quarter.name = GDQuarterManager.findQuarterName(withHtmlData: data, andCSS: css)
-    return quarter
-  }
+    
+    func parseDateForId(id: String, withData data: NSData) -> NSDate? {
+      
+      if let doc = Kanna.HTML(html: data, encoding: NSUTF8StringEncoding) {
+        let dateString = doc.at_css(id)?.text
+        if dateString != nil {
+          let dateFormatter = NSDateFormatter()
+          dateFormatter.dateFormat = "M/d/yyyy"
+          dateFormatter.timeZone = NSTimeZone(abbreviation: "PST")
+          return dateFormatter.dateFromString(dateString!)
+        }
+      }
+      return nil
+    }
+    
+    // TODO: get xmlset so no need to get doc every time
+    func decorateQuarter(withData data: NSData) -> GDQuarter? {
+      let quarter = GDQuarter()
+      quarter.start = parseDateForId(QuarterInfoIdDs.start, withData: data)
+      quarter.end = parseDateForId(QuarterInfoIdDs.end, withData: data)
+      quarter.name = findQuarterName(withHtmlData: data)
+      quarter.id = quarterManager.selectedQuarterId(withHtmlData: data)
+      return quarter
+    }
+    
+    func findQuarterName(withHtmlData data: NSData) -> String? {
+      if let doc = Kanna.HTML(html: data, encoding: NSUTF8StringEncoding) {
+        if let quarter = doc.at_css(QuarterInfoIdDs.name) {
+          return quarter.text
+        }
+      }
+      return nil
+    }
 }

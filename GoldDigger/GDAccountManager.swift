@@ -89,14 +89,14 @@ class GDAccountManager: NSObject {
   */
   func login(netID netID: String, password: String,
     onSuccess successBlock: successBlockNil?,
-    onFail failureBlock: failureHandler?) -> BFTask {
+    onFailure failureBlock: failureHandler?) -> BFTask {
       
       self.netID = netID
       self.password = password
-      return login(onSuccess: successBlock, onFail: failureBlock)
+      return login(onSuccess: successBlock, onFailure: failureBlock)
   }
   
-  func login(onSuccess successBlock: successBlockNil?, onFail failureBlock: failureHandler?) -> BFTask {
+  func login(onSuccess successBlock: successBlockNil?, onFailure failureBlock: failureHandler?) -> BFTask {
     return downloadLoginPage(rootURL).continueWithSuccessBlock {
       (task: BFTask!) -> BFTask in
       let parameters = task.result as! [String: AnyObject]
@@ -121,7 +121,8 @@ class GDAccountManager: NSObject {
         if response.result.isFailure {
           task.setError(response.result.error!)
         }
-        else if response.response!.URL!.path!.containsString("Home.aspx") {
+        else if response.response!.URL!.path!.containsString("Home.aspx")
+        || response.response!.URL!.path!.containsString("AlertMessage.aspx"){
           task.setResult(nil)
         }
         else {

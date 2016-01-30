@@ -11,6 +11,8 @@ import Alamofire
 import Bolts
 import Kanna
 import UIKit
+// TODO: 1. Store schedule to user defaults
+// TODO: 2. Add support for next quarter
 
 class GDClassSchedule: NSObject {
   
@@ -61,7 +63,7 @@ class GDClassSchedule: NSObject {
       .continueWithBlock { (task: BFTask!) -> BFTask in
         if task.error != nil {
           // Log in and retry
-          return self.accountManager.login(onSuccess: nil, onFail: nil)
+          return self.accountManager.login(onSuccess: nil, onFailure: nil)
             .continueWithSuccessBlock({ (task: BFTask!) -> BFTask in
               return self.getDefaultHTML()
             })

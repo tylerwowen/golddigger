@@ -47,7 +47,7 @@ class GDClassAdder: NSObject {
       .continueWithBlock { (task: BFTask!) -> BFTask in
         if task.error != nil {
           // Log in and retry
-          return self.accountManager.login(onSuccess: nil, onFail: nil)
+          return self.accountManager.login(onSuccess: nil, onFailure: nil)
             .continueWithSuccessBlock({ (task: BFTask!) -> BFTask in
               return self.getDefaultHTML()
             })

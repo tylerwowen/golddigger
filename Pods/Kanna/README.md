@@ -5,6 +5,19 @@ Kanna(鉋) is an XML/HTML parser for MacOSX/iOS. (formerly Swift-HTML-Parser)
 
 It was inspired by [Nokogiri](https://github.com/sparklemotion/nokogiri)(鋸).
 
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat
+            )](http://mit-license.org)
+[![Platform](http://img.shields.io/badge/platform-ios_osx_tvos-lightgrey.svg?style=flat
+             )](https://developer.apple.com/resources/)
+[![Language](http://img.shields.io/badge/language-swift-orange.svg?style=flat
+             )](https://developer.apple.com/swift)
+[![Issues](https://img.shields.io/github/issues/tid-kijyun/Kanna.svg?style=flat
+           )](https://github.com/tid-kijyun/Kanna/issues)
+[![Cocoapod](http://img.shields.io/cocoapods/v/Kanna.svg?style=flat)](http://cocoadocs.org/docsets/Kanna/)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Reference Status](https://www.versioneye.com/objective-c/kanna/reference_badge.svg?style=flat)](https://www.versioneye.com/objective-c/kanna/references)
+
+
 Features:
 =================
 - [x] XPath 1.0 support for document searching
@@ -37,16 +50,11 @@ github "tid-kijyun/Kanna" ~> 1.0.0
   [libxmlHTMLDocument.swift](Source/libxml/libxmlHTMLDocument.swift)  
   [libxmlHTMLNode.swift](Source/libxml/libxmlHTMLNode.swift)  
   [libxmlParserOption.swift](Source/libxml/libxmlParserOption.swift)  
-1. Add import libxml headers:  
- Copy and paste these import statements to `[modulename]-Bridging-Header.h`.
-  ```[ANYNAME]-Bridging-Header.h
-  #import <libxml/HTMLtree.h>
-  #import <libxml/xpathInternals.h>
-  ```
-  (optional) In the project settings add "[modulename]-Bridging-Header.h" to the "Objective-C Bridging Header".
-
+1. Copy folder to your project:  
+  [Modules](Modules)
+1. In the project settings add `$(SRCROOT)/YOUR_PROJECT/Modules` to the "Swift Compiler - Search Paths > Import Paths" field
 1. In the project settings add `$(SDKROOT)/usr/include/libxml2` to the "header search paths" field
-1. Add libxml2.dylib to "Link Binary With Libraries"
+1. In the project settings add `-lxml2` to the "Linking > Other Linker Flags" field
 
 *Note: For manually, this library don't need import and namespace in your code.*
 
