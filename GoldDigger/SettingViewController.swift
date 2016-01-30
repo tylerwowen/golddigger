@@ -32,10 +32,12 @@ class SettingViewController: UITableViewController, UITextFieldDelegate {
   }
   
   func restoreSettings() {
-    let isNotificationOn = userSettings.valueForKey(SettingsKey.notification) as? Bool
-    if isNotificationOn != nil {
-      passNotificationSwitch.setOn(isNotificationOn!, animated: false)
-    }
+//    let isNotificationOn = userSettings.valueForKey(SettingsKey.notification) as? Bool
+//    if isNotificationOn != nil {
+//      passNotificationSwitch.setOn(isNotificationOn!, animated: false)
+//    }
+    // TODO: make it persistant
+    passNotificationSwitch.setOn(scheduler.isNotificationScheduled(), animated: false)
   }
   
   // MARK: - Table view data source
@@ -106,7 +108,7 @@ class SettingViewController: UITableViewController, UITextFieldDelegate {
         self.updateUserDefaults(true)
       }
       else {
-        showDefaultAlert("Sorry", message: "Cannot get your pass time", actionTitle: "OK")
+        showDefaultAlert("Sorry, cannot get your pass time", message: "There isn't any future pass time available", actionTitle: "OK")
         self.passNotificationSwitch.setOn(false, animated: true)
       }
     }

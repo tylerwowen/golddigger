@@ -23,7 +23,9 @@ private let requestKeys = [
   "ctl00$pageContent$loginButton.x",
   "ctl00$pageContent$loginButton.y",
   "ctl00$pageContent$PermPinLogin$userNameText",
-  "ctl00$pageContent$PermPinLogin$passwordText"]
+  "ctl00$pageContent$PermPinLogin$passwordText",
+  "ctl00$pageContent$PermPinLogin$loginButton.x",
+  "ctl00$pageContent$PermPinLogin$loginButton.y"]
 
 enum credentialKeys {
   static let netID = "netIDKey", password = "passwordKey"
@@ -97,11 +99,22 @@ class GDAccountManager: NSObject {
   }
   
   func login(onSuccess successBlock: successBlockNil?, onFailure failureBlock: failureHandler?) -> BFTask {
-    return downloadLoginPage(rootURL).continueWithSuccessBlock {
-      (task: BFTask!) -> BFTask in
-      let parameters = task.result as! [String: AnyObject]
-      return self.loginWithParameters(parameters)
-      }.continueWithBlock {
+    var parameters: [String: AnyObject]!
+    return downloadLoginPage(rootURL)
+      .continueWithSuccessBlock {
+        (task: BFTask!) -> BFTask in
+        parameters = task.result as! [String: AnyObject]
+        return self.loginWithParameters(parameters)
+      }
+      .continueWithBlock {
+        (task: BFTask!) -> AnyObject? in
+        if (task.error != nil && task.error?.domain == "GoldDigger") {
+          parameters = self.appendPermPinParameters(parameters)
+          return self.loginWithParameters(parameters)
+        }
+        return task
+      }
+      .continueWithBlock {
         (task: BFTask!) -> AnyObject? in
         if (task.error != nil) {
           if failureBlock != nil {failureBlock!(task.error)}
@@ -122,8 +135,8 @@ class GDAccountManager: NSObject {
           task.setError(response.result.error!)
         }
         else if response.response!.URL!.path!.containsString("Home.aspx")
-        || response.response!.URL!.path!.containsString("AlertMessage.aspx"){
-          task.setResult(nil)
+          || response.response!.URL!.path!.containsString("AlertMessage.aspx"){
+            task.setResult(nil)
         }
         else {
           let error = NSError(
@@ -165,13 +178,19 @@ class GDAccountManager: NSObject {
     return assembleUserInfo(paramDict)
   }
   
-  func assembleUserInfo(var parameters:[String: AnyObject]) -> [String: AnyObject]{
+  func assembleUserInfo(var parameters:[String: AnyObject]) -> [String: AnyObject] {
     parameters[requestKeys[6]] = netID
     parameters[requestKeys[7]] = password
-    parameters[requestKeys[8]] = 87
-    parameters[requestKeys[9]] = 5
-    parameters[requestKeys[10]] = ""
-    parameters[requestKeys[11]] = ""
+    parameters[requestKeys[8]] = 0
+    parameters[requestKeys[9]] = 0
+    parameters[requestKeys[10]] = netID
+    parameters[requestKeys[11]] = password
+    return parameters
+  }
+  
+  func appendPermPinParameters(var parameters:[String: AnyObject]) -> [String: AnyObject] {
+    parameters[requestKeys[12]] = 0
+    parameters[requestKeys[13]] = 0
     return parameters
   }
 }

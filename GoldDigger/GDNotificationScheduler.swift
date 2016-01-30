@@ -23,6 +23,10 @@ class GDNotificationScheduler: NSObject {
     }
   }
   
+  func isNotificationScheduled() -> Bool {
+    return UIApplication.sharedApplication().scheduledLocalNotifications?.count > 0
+  }
+  
   func removeScheduledNotification() {
     // WARNING: this may calcel other notification
     UIApplication.sharedApplication().cancelAllLocalNotifications()
