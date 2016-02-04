@@ -1,5 +1,7 @@
 ### Thank you for using `GOLDDigger`!
 
+[![app store](https://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg)](https://geo.itunes.apple.com/us/app/golddigger-ucsb-unofficial/id1079735447?mt=8)
+
 ### About `GOLDDigger`
 `GOLDDigger` makes UCSB students interact with GOLD (Gaucho On-line Data) easier.
 
