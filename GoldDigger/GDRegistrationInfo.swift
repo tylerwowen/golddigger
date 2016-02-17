@@ -245,11 +245,13 @@ class GDRegistrationInfo: NSObject {
     // MARK: - Parsing
     
     func getPassTimeArr() -> [NSDate] {
-      if passTimeArr.count != 0 {
+      if passTimeArr.count > 0 {
         return passTimeArr
       }
       for var i = 1; i <= 3; i++ {
-        passTimeArr.append(self.parsePassTime(i)!)
+        if let date = self.parsePassTime(i) {
+          passTimeArr.append(date)
+        }
       }
       return passTimeArr
     }

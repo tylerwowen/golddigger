@@ -22,7 +22,6 @@ class ScheduleTableViewController: UIViewController, UITableViewDataSource, UITa
     super.viewDidLoad()
     createLoadingView()
     loadData()
-    
   }
   
   override func viewWillAppear(animated: Bool) {

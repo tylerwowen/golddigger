@@ -71,9 +71,13 @@ class GDEventExporter: NSObject {
         
         let lecture = assembleEvent(forMeeting: classArr[i])
         try store.saveEvent(lecture, span: .FutureEvents)
-        if classArr[i].section != nil {
-          let section = assembleEvent(forMeeting: classArr[i].section!)
-          try store.saveEvent(section, span: .FutureEvents)
+        if classArr[i].sections.count > 0 {
+          for meeting in classArr[i].sections {
+            if isMeetingValid(meeting) {
+              let section = assembleEvent(forMeeting: meeting)
+              try store.saveEvent(section, span: .FutureEvents)
+            }
+          }
         }
       }
       try store.commit()
@@ -96,7 +100,18 @@ class GDEventExporter: NSObject {
         (task: BFTask!) -> BFTask in
         self.quarter = quarterManager.currentQuarter
         return task
-      }
+    }
+  }
+  
+  func isMeetingValid(meeting: GDSection) -> Bool {
+    if meeting.start == nil ||
+      meeting.end == nil ||
+      meeting.courseTitle == nil ||
+      meeting.days == nil {
+        
+        return false
+    }
+    return true
   }
   
   func assembleEvent(forMeeting meeting: GDSection) -> EKEvent{
@@ -104,9 +119,9 @@ class GDEventExporter: NSObject {
     let startEnd = startEndDates(meeting)
     
     event.calendar = store.defaultCalendarForNewEvents
-    event.title = meeting.courseTitle
+    event.title = meeting.courseTitle!
     event.location = meeting.location
-    event.recurrenceRules = [recurrenceRule(meeting.days)]
+    event.recurrenceRules = [recurrenceRule(meeting.days!)]
     event.startDate = startEnd.0
     event.endDate = startEnd.1
     event.notes = notes
@@ -128,14 +143,15 @@ class GDEventExporter: NSObject {
   }
   
   func startEndDates(meeting: GDSection) -> (NSDate, NSDate) {
-    let mergedComponents = meeting.start
-    mergedComponents.weekday = meeting.days[0].dayOfTheWeek.rawValue
+    let mergedComponents = meeting.start!
+    mergedComponents.weekday = meeting.days![0].dayOfTheWeek.rawValue
     
     let start = calendar.nextDateAfterDate(quarter.start!,
       matchingComponents: mergedComponents,
       options: .MatchNextTime)!
-    let end = calendar.dateBySettingHour(meeting.end.hour,
-      minute: meeting.end.minute,
+    
+    let end = calendar.dateBySettingHour(meeting.end!.hour,
+      minute: meeting.end!.minute,
       second: 0,
       ofDate: start,
       options: .MatchNextTime)!

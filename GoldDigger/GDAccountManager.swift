@@ -172,7 +172,7 @@ class GDAccountManager: NSObject {
     return task.task
   }
   
-  func assembleRequestData(html: NSData) -> [String: AnyObject]{
+  func assembleRequestData(html: NSData) -> [String: AnyObject] {
     let parameters = Array(requestKeys[0..<6])
     let paramDict = GDPrameterParser.extractParameters(parameters, fromHTML: html)
     return assembleUserInfo(paramDict)

@@ -12,43 +12,32 @@ class ClassDetailViewController: UIViewController {
   
   var presentedClass: GDClass!
   
-  @IBOutlet weak var lecTitleLabel: UILabel!
-  @IBOutlet weak var lecInstructorLabel: UILabel!
-  @IBOutlet weak var lecDaysLabel: UILabel!
-  @IBOutlet weak var lecLocationLabel: UILabel!
-  @IBOutlet weak var lecTimeLabel: UILabel!
+  @IBOutlet var tableView: UITableView!
   
-  @IBOutlet weak var secInstructorLabel: UILabel!
-  @IBOutlet weak var secLocationLabel: UILabel!
-  @IBOutlet weak var secDaysLabel: UILabel!
-  @IBOutlet weak var secTimeLabel: UILabel!
+  // MARK: - Table view data source
   
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    
-    bind()
+  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    return 1
   }
   
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return 1 + presentedClass.sections.count
   }
   
-  func bind() {
-    lecTitleLabel.text = presentedClass.courseTitle
-    lecInstructorLabel.text = presentedClass.instructor
-    lecDaysLabel.text = presentedClass.daysStr
-    lecLocationLabel.text = presentedClass.location
-    lecTimeLabel.text = presentedClass.startStr + " - " + presentedClass.endStr
+  
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCellWithIdentifier("classCell", forIndexPath: indexPath) as! GDClassTableViewCell
     
-    if presentedClass.section != nil {
-      secInstructorLabel.text = presentedClass.section!.instructor
-      secLocationLabel.text = presentedClass.section!.location
-      secDaysLabel.text = presentedClass.section!.daysStr
-      secTimeLabel.text = presentedClass.section!.startStr + " - " + presentedClass.section!.endStr
+    if indexPath.row == 0 {
+      cell.bind(with: presentedClass)
     }
+    else {
+      cell.bind(with: presentedClass.sections[indexPath.row-1])
+      cell.courseTitleLabel.textColor = UIColor.greenColor()
+    }
+    return cell
   }
+
   
   /*
   // MARK: - Navigation

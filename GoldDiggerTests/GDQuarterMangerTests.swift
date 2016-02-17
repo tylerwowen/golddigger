@@ -11,7 +11,7 @@ import XCTest
 
 class GDQuarterMangerTests: XCTestCase {
   
-  typealias sutClass = GDQuarterManager
+  var sut = GDQuarterManager()
   
   override func setUp() {
     super.setUp()
@@ -24,14 +24,14 @@ class GDQuarterMangerTests: XCTestCase {
   }
   
   // MARK: - Given
-  func givenQuarterSelectionTestData() -> NSData! {
+  func givenQuarterSelectionTestData() -> NSData {
     let testHTMLString = "<select name='ctl00$pageContent$quarterDropDown' id='pageContent_quarterDropDown' class='titledropdown'><option value=''>-Select-</option><option value='20161'>Winter 2016</option><option selected='selected' value='20154'>Fall 2015</option></select>"
-    return testHTMLString.dataUsingEncoding(NSUTF8StringEncoding)
+    return testHTMLString.dataUsingEncoding(NSUTF8StringEncoding)!
   }
   
-  func givenBadQuarterSelectionTestData() -> NSData! {
+  func givenBadQuarterSelectionTestData() -> NSData {
     let testHTMLString = "<select name='ctl00$pageContent$quarterDropDown' id='pageContent_quarterDropDown' class='titledropdown'></select>"
-    return testHTMLString.dataUsingEncoding(NSUTF8StringEncoding)
+    return testHTMLString.dataUsingEncoding(NSUTF8StringEncoding)!
   }
   
   // MARK: - Tests
@@ -39,28 +39,28 @@ class GDQuarterMangerTests: XCTestCase {
   func test__findLatestQuarter__validHTML__returnsQuarter() {
     let testHTMLData = givenQuarterSelectionTestData()
     
-    let quarter = sutClass.findLatestQuarterId(testHTMLData)
+    let quarter = sut.latestQuarterId(withHtmlData: testHTMLData)
     XCTAssertEqual(quarter, "20161")
   }
   
   func test__findLatestQuarter__invalidHTML__returnsNil() {
     let testHTMLData = givenBadQuarterSelectionTestData()
     
-    let quarter = sutClass.findLatestQuarterId(testHTMLData)
+    let quarter = sut.latestQuarterId(withHtmlData: testHTMLData)
     XCTAssertNil(quarter)
   }
   
   func test__findCurrentQuarter__validHTML__returnsQuarter() {
     let testHTMLData = givenQuarterSelectionTestData()
     
-    let quarter = sutClass.findCurrentQuarterId(testHTMLData)
+    let quarter = sut.selectedQuarterId(withHtmlData: testHTMLData)
     XCTAssertEqual(quarter, "20154")
   }
   
   func test__findCurrentQuarter__invalidHTML__returnsNil() {
     let testHTMLData = givenBadQuarterSelectionTestData()
     
-    let quarter = sutClass.findCurrentQuarterId(testHTMLData)
+    let quarter = sut.selectedQuarterId(withHtmlData: testHTMLData)
     XCTAssertNil(quarter)
   }
   

@@ -62,6 +62,8 @@ class GDQuarterManager: NSObject {
       return parameters
   }
   
+  // MARK: - Utils
+  
   func isSelectedLatest(htmlData: NSData) -> Bool {
     let latest = selectedQuarterId(withHtmlData: htmlData)
     let selected = latestQuarterId(withHtmlData: htmlData)

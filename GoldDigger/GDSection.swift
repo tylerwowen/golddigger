@@ -10,15 +10,15 @@ import UIKit
 import EventKit
 
 class GDSection: NSObject {
-  var courseTitle: String!
+  var courseTitle: String?
 
   var location: String?
   var instructor: String?
   
-  var days: [EKRecurrenceDayOfWeek]!
-  var daysStr: String!
-  var start: NSDateComponents!
-  var startStr: String!
-  var end: NSDateComponents!
-  var endStr: String!
+  var days: [EKRecurrenceDayOfWeek]?
+  var daysStr: String?
+  var start: NSDateComponents?
+  var startStr: String?
+  var end: NSDateComponents?
+  var endStr: String?
 }
