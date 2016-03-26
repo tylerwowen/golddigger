@@ -76,7 +76,8 @@ class GDClass: GDSection {
   private func processInstructorNodes(nodes: XMLNodeSet) {
     instructor = nodes[0].text?.trim()
     if nodes.count > 1 {
-      for var i = 0; i < nodes.count - 1 && i < sections.count ; i++ {
+      let end = min(nodes.count - 1, sections.count)
+      for i in 0..<end {
       sections[i].instructor = nodes[i+1].text?.trim()
       }
     }
@@ -95,8 +96,8 @@ class GDClass: GDSection {
     location = nodes[2].at_css(".BuildingLocationLink")?.text
     
     if nodes.count % 3 == 0 && nodes.count > 3 {
-      for var i = 0; i < nodes.count / 3 - 1; i++ {
-        sections[i].courseTitle = "Section -" + courseTitle!
+      for i in 0..<nodes.count/3 - 1 {
+        sections[i].courseTitle = "Section - " + courseTitle!
         sections[i].daysStr = nodes[3+i*3].text?.trim()
         sections[i].days = getDays(fromString: sections[i].daysStr)
         

@@ -81,7 +81,19 @@ class GDRegistrationInfo: NSObject {
         if completeBlock != nil {completeBlock!(nil, task.error)}
       }
       else if self.futureQuaterData != nil {
-        if completeBlock != nil {completeBlock!(self.getPassTimeArr(), nil)}
+        if completeBlock != nil {
+          let passTimeArr = self.getPassTimeArr()
+          if passTimeArr.count > 0 {
+            completeBlock!(passTimeArr, nil)
+          }
+          else {
+            let error = NSError(
+              domain: "GoldDigger",
+              code: 12,
+              userInfo: ["Data not available":"Pass time not avaiable"])
+            completeBlock!(nil, error)
+          }
+        }
       }
       return nil
     }
@@ -248,7 +260,7 @@ class GDRegistrationInfo: NSObject {
       if passTimeArr.count > 0 {
         return passTimeArr
       }
-      for var i = 1; i <= 3; i++ {
+      for i in 1...3 {
         if let date = self.parsePassTime(i) {
           passTimeArr.append(date)
         }

@@ -99,7 +99,7 @@ class GDAccountManager: NSObject {
   }
   
   func login(onSuccess successBlock: successBlockNil?, onFailure failureBlock: failureHandler?) -> BFTask {
-    var parameters: [String: AnyObject]!
+    var parameters = [String: AnyObject]()
     return downloadLoginPage(rootURL)
       .continueWithSuccessBlock {
         (task: BFTask!) -> BFTask in
@@ -109,7 +109,7 @@ class GDAccountManager: NSObject {
       .continueWithBlock {
         (task: BFTask!) -> AnyObject? in
         if (task.error != nil && task.error?.domain == "GoldDigger") {
-          parameters = self.appendPermPinParameters(parameters)
+          self.appendPermPinParameters(&parameters)
           return self.loginWithParameters(parameters)
         }
         return task
@@ -174,23 +174,22 @@ class GDAccountManager: NSObject {
   
   func assembleRequestData(html: NSData) -> [String: AnyObject] {
     let parameters = Array(requestKeys[0..<6])
-    let paramDict = GDPrameterParser.extractParameters(parameters, fromHTML: html)
-    return assembleUserInfo(paramDict)
+    var paramDict = GDPrameterParser.extractParameters(parameters, fromHTML: html)
+    assembleUserInfo(&paramDict)
+    return paramDict
   }
   
-  func assembleUserInfo(var parameters:[String: AnyObject]) -> [String: AnyObject] {
+  func assembleUserInfo(inout parameters:[String: AnyObject]) {
     parameters[requestKeys[6]] = netID
     parameters[requestKeys[7]] = password
     parameters[requestKeys[8]] = 0
     parameters[requestKeys[9]] = 0
     parameters[requestKeys[10]] = netID
     parameters[requestKeys[11]] = password
-    return parameters
   }
   
-  func appendPermPinParameters(var parameters:[String: AnyObject]) -> [String: AnyObject] {
+  func appendPermPinParameters(inout parameters:[String: AnyObject]) {
     parameters[requestKeys[12]] = 0
     parameters[requestKeys[13]] = 0
-    return parameters
   }
 }

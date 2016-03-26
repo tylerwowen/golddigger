@@ -67,7 +67,7 @@ class GDEventExporter: NSObject {
   
   func export() {
     do {
-      for (var i = 0; i < classArr.count; i++) {
+      for i in 0 ..< classArr.count {
         
         let lecture = assembleEvent(forMeeting: classArr[i])
         try store.saveEvent(lecture, span: .FutureEvents)
