@@ -28,7 +28,7 @@ class GDNotificationScheduler: NSObject {
   }
   
   func removeScheduledNotification() {
-    // WARNING: this may calcel other notification
+    // WARNING: this may cancel other notification
     UIApplication.sharedApplication().cancelAllLocalNotifications()
   }
 }
