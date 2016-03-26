@@ -108,7 +108,7 @@ class GDClassSchedule: NSObject {
     }
     if let doc = Kanna.HTML(html: htmlData!, encoding: NSUTF8StringEncoding) {
       let nodes = doc.css("#pageContent_CourseList>tr")
-      for var i = 1; i < nodes.count; i++ {
+      for i in 1..<nodes.count {
         let course = GDClass()
         course.inflate(withXML: nodes[i], index: i-1)
         classArr.append(course)
