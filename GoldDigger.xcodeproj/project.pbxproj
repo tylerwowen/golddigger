@@ -37,8 +37,9 @@
 		2FE8E76E1C55CE480062602C /* GDSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8E76D1C55CE480062602C /* GDSection.swift */; };
 		2FE8E7701C55D4780062602C /* GDEventExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8E76F1C55D4780062602C /* GDEventExporter.swift */; };
 		2FFB44E01C33C7D70081D59A /* GDAccountManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFB44DF1C33C7D70081D59A /* GDAccountManagerTests.swift */; };
-		8C3AD633E60456AB47D1E54F /* Pods_GoldDiggerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF071FED33D221610278438 /* Pods_GoldDiggerTests.framework */; };
-		949B335C2350AA35DDFA6E8B /* Pods_GoldDigger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CC4EF2E3D040001908A6B4E /* Pods_GoldDigger.framework */; };
+		4C59F621628A73FC04ED1A62 /* Pods_GoldDiggerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED48ABAD5AAE41A339570D53 /* Pods_GoldDiggerTests.framework */; };
+		95AC6640A6CFB57DFB375142 /* Pods_GoldDigger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 951637B2165415B8B50A7AFC /* Pods_GoldDigger.framework */; };
+		A88738F9AC1368094B0E2440 /* Pods_GoldDiggerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D05E1915314B9231A9BA255 /* Pods_GoldDiggerUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,8 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0DF071FED33D221610278438 /* Pods_GoldDiggerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoldDiggerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C5E7D9863BB66FD45A5D06C /* Pods-GoldDiggerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoldDiggerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoldDiggerTests/Pods-GoldDiggerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		0B1F3610E9809D7D81650113 /* Pods-GoldDiggerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoldDiggerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoldDiggerUITests/Pods-GoldDiggerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		2F106D1B1C63FB3200465539 /* GDClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDClassTests.swift; sourceTree = "<group>"; };
 		2F49BF661C37BDF900DD8B32 /* GDNotificationScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDNotificationScheduler.swift; sourceTree = "<group>"; };
 		2F49BF681C37C11F00DD8B32 /* GDPrameterParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDPrameterParser.swift; sourceTree = "<group>"; };
@@ -101,10 +101,14 @@
 		2FFB44E31C33E75E0081D59A /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		2FFB44E61C33E7990081D59A /* libresolv.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.9.tbd; path = usr/lib/libresolv.9.tbd; sourceTree = SDKROOT; };
 		2FFB44E81C33E7A20081D59A /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
-		4495B91A2E37EA1846DD7664 /* Pods-GoldDigger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoldDigger.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoldDigger/Pods-GoldDigger.debug.xcconfig"; sourceTree = "<group>"; };
-		4CC4EF2E3D040001908A6B4E /* Pods_GoldDigger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoldDigger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C0CF8530784FBDB817B9F995 /* Pods-GoldDiggerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoldDiggerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoldDiggerTests/Pods-GoldDiggerTests.release.xcconfig"; sourceTree = "<group>"; };
-		C5C4103ED4F7628F39248335 /* Pods-GoldDigger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoldDigger.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoldDigger/Pods-GoldDigger.release.xcconfig"; sourceTree = "<group>"; };
+		6D05E1915314B9231A9BA255 /* Pods_GoldDiggerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoldDiggerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		90BA30069D64CF8E78962007 /* Pods-GoldDiggerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoldDiggerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoldDiggerTests/Pods-GoldDiggerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		951637B2165415B8B50A7AFC /* Pods_GoldDigger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoldDigger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D38A6E9AD68A206F61483CB /* Pods-GoldDigger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoldDigger.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoldDigger/Pods-GoldDigger.release.xcconfig"; sourceTree = "<group>"; };
+		BA4E9C79C1D9647BEA431ACC /* Pods-GoldDigger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoldDigger.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoldDigger/Pods-GoldDigger.debug.xcconfig"; sourceTree = "<group>"; };
+		C6059744345D6E31586105FB /* Pods-GoldDiggerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoldDiggerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoldDiggerTests/Pods-GoldDiggerTests.release.xcconfig"; sourceTree = "<group>"; };
+		ED48ABAD5AAE41A339570D53 /* Pods_GoldDiggerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoldDiggerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF72C4FA48E6ECD13385F6A0 /* Pods-GoldDiggerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoldDiggerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoldDiggerUITests/Pods-GoldDiggerUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				949B335C2350AA35DDFA6E8B /* Pods_GoldDigger.framework in Frameworks */,
+				95AC6640A6CFB57DFB375142 /* Pods_GoldDigger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,7 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C3AD633E60456AB47D1E54F /* Pods_GoldDiggerTests.framework in Frameworks */,
+				4C59F621628A73FC04ED1A62 /* Pods_GoldDiggerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A88738F9AC1368094B0E2440 /* Pods_GoldDiggerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,8 +179,8 @@
 				2F73B4BE1C33A7C200C78204 /* GoldDiggerTests */,
 				2F73B4C91C33A7C200C78204 /* GoldDiggerUITests */,
 				2F73B4A61C33A7C200C78204 /* Products */,
-				77DC1C6B7E97A8B61A3084FB /* Pods */,
 				DF2A01FB670EECDB07D1EBA1 /* Frameworks */,
+				41F0823B60E6253F411542C6 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -290,13 +295,15 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		77DC1C6B7E97A8B61A3084FB /* Pods */ = {
+		41F0823B60E6253F411542C6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4495B91A2E37EA1846DD7664 /* Pods-GoldDigger.debug.xcconfig */,
-				C5C4103ED4F7628F39248335 /* Pods-GoldDigger.release.xcconfig */,
-				2C5E7D9863BB66FD45A5D06C /* Pods-GoldDiggerTests.debug.xcconfig */,
-				C0CF8530784FBDB817B9F995 /* Pods-GoldDiggerTests.release.xcconfig */,
+				BA4E9C79C1D9647BEA431ACC /* Pods-GoldDigger.debug.xcconfig */,
+				9D38A6E9AD68A206F61483CB /* Pods-GoldDigger.release.xcconfig */,
+				90BA30069D64CF8E78962007 /* Pods-GoldDiggerTests.debug.xcconfig */,
+				C6059744345D6E31586105FB /* Pods-GoldDiggerTests.release.xcconfig */,
+				0B1F3610E9809D7D81650113 /* Pods-GoldDiggerUITests.debug.xcconfig */,
+				EF72C4FA48E6ECD13385F6A0 /* Pods-GoldDiggerUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -308,8 +315,9 @@
 				2FFB44E61C33E7990081D59A /* libresolv.9.tbd */,
 				2FFB44E31C33E75E0081D59A /* libxml2.tbd */,
 				2FFB44E11C33E7460081D59A /* libxml2.2.tbd */,
-				4CC4EF2E3D040001908A6B4E /* Pods_GoldDigger.framework */,
-				0DF071FED33D221610278438 /* Pods_GoldDiggerTests.framework */,
+				951637B2165415B8B50A7AFC /* Pods_GoldDigger.framework */,
+				ED48ABAD5AAE41A339570D53 /* Pods_GoldDiggerTests.framework */,
+				6D05E1915314B9231A9BA255 /* Pods_GoldDiggerUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -321,12 +329,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2F73B4CF1C33A7C200C78204 /* Build configuration list for PBXNativeTarget "GoldDigger" */;
 			buildPhases = (
-				77776F7141B815344D294565 /* Check Pods Manifest.lock */,
+				AD29C3408BF3DD0DA3378F05 /* [CP] Check Pods Manifest.lock */,
 				2F73B4A11C33A7C200C78204 /* Sources */,
 				2F73B4A21C33A7C200C78204 /* Frameworks */,
 				2F73B4A31C33A7C200C78204 /* Resources */,
-				C4C8C6F8D09C8D231E11A995 /* Embed Pods Frameworks */,
-				21E17F9EC3ACF598486C7A63 /* Copy Pods Resources */,
+				AFDFFA2806468EE3B9D59620 /* [CP] Embed Pods Frameworks */,
+				79F9834C0DF219E9513612CE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -341,12 +349,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2F73B4D21C33A7C200C78204 /* Build configuration list for PBXNativeTarget "GoldDiggerTests" */;
 			buildPhases = (
-				01C8CCD8E0B9002C6EF0BEA6 /* Check Pods Manifest.lock */,
+				8F3559D10A3D2E6653E0F51C /* [CP] Check Pods Manifest.lock */,
 				2F73B4B71C33A7C200C78204 /* Sources */,
 				2F73B4B81C33A7C200C78204 /* Frameworks */,
 				2F73B4B91C33A7C200C78204 /* Resources */,
-				E9B18521ED771B48FA31AB55 /* Embed Pods Frameworks */,
-				4551B24202F757CC488C7CE0 /* Copy Pods Resources */,
+				1DA2861FBD2A29DDEA2CF7B5 /* [CP] Embed Pods Frameworks */,
+				0CC33AE3211EF5CDB2230ED7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -362,9 +370,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2F73B4D51C33A7C200C78204 /* Build configuration list for PBXNativeTarget "GoldDiggerUITests" */;
 			buildPhases = (
+				7A6EA8092566AD7615B327E7 /* [CP] Check Pods Manifest.lock */,
 				2F73B4C21C33A7C200C78204 /* Sources */,
 				2F73B4C31C33A7C200C78204 /* Frameworks */,
 				2F73B4C41C33A7C200C78204 /* Resources */,
+				E464D192771B0DE20D127D2A /* [CP] Embed Pods Frameworks */,
+				76F52CC262A1D6AB153A0016 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -389,6 +400,7 @@
 					2F73B4A41C33A7C200C78204 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = F5S48SAJAU;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -403,10 +415,12 @@
 					};
 					2F73B4BA1C33A7C200C78204 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 						TestTargetID = 2F73B4A41C33A7C200C78204;
 					};
 					2F73B4C51C33A7C200C78204 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 						TestTargetID = 2F73B4A41C33A7C200C78204;
 					};
 				};
@@ -459,44 +473,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		01C8CCD8E0B9002C6EF0BEA6 /* Check Pods Manifest.lock */ = {
+		0CC33AE3211EF5CDB2230ED7 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		21E17F9EC3ACF598486C7A63 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GoldDigger/Pods-GoldDigger-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4551B24202F757CC488C7CE0 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -504,29 +488,104 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GoldDiggerTests/Pods-GoldDiggerTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		77776F7141B815344D294565 /* Check Pods Manifest.lock */ = {
+		1DA2861FBD2A29DDEA2CF7B5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GoldDiggerTests/Pods-GoldDiggerTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C4C8C6F8D09C8D231E11A995 /* Embed Pods Frameworks */ = {
+		76F52CC262A1D6AB153A0016 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GoldDiggerUITests/Pods-GoldDiggerUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		79F9834C0DF219E9513612CE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GoldDigger/Pods-GoldDigger-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7A6EA8092566AD7615B327E7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8F3559D10A3D2E6653E0F51C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AD29C3408BF3DD0DA3378F05 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AFDFFA2806468EE3B9D59620 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -534,19 +593,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GoldDigger/Pods-GoldDigger-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E9B18521ED771B48FA31AB55 /* Embed Pods Frameworks */ = {
+		E464D192771B0DE20D127D2A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GoldDiggerTests/Pods-GoldDiggerTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GoldDiggerUITests/Pods-GoldDiggerUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -720,7 +779,7 @@
 		};
 		2F73B4D01C33A7C200C78204 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4495B91A2E37EA1846DD7664 /* Pods-GoldDigger.debug.xcconfig */;
+			baseConfigurationReference = BA4E9C79C1D9647BEA431ACC /* Pods-GoldDigger.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -733,12 +792,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = TO.GoldDigger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
 		2F73B4D11C33A7C200C78204 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C5C4103ED4F7628F39248335 /* Pods-GoldDigger.release.xcconfig */;
+			baseConfigurationReference = 9D38A6E9AD68A206F61483CB /* Pods-GoldDigger.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -752,12 +812,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
 		2F73B4D31C33A7C200C78204 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C5E7D9863BB66FD45A5D06C /* Pods-GoldDiggerTests.debug.xcconfig */;
+			baseConfigurationReference = 90BA30069D64CF8E78962007 /* Pods-GoldDiggerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				HEADER_SEARCH_PATHS = "$(inherited)";
@@ -765,13 +826,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TO.GoldDiggerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GoldDigger.app/GoldDigger";
 			};
 			name = Debug;
 		};
 		2F73B4D41C33A7C200C78204 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C0CF8530784FBDB817B9F995 /* Pods-GoldDiggerTests.release.xcconfig */;
+			baseConfigurationReference = C6059744345D6E31586105FB /* Pods-GoldDiggerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				HEADER_SEARCH_PATHS = "$(inherited)";
@@ -779,18 +841,21 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TO.GoldDiggerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GoldDigger.app/GoldDigger";
 			};
 			name = Release;
 		};
 		2F73B4D61C33A7C200C78204 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B1F3610E9809D7D81650113 /* Pods-GoldDiggerUITests.debug.xcconfig */;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				INFOPLIST_FILE = GoldDiggerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TO.GoldDiggerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_TARGET_NAME = GoldDigger;
 				USES_XCTRUNNER = YES;
 			};
@@ -798,12 +863,14 @@
 		};
 		2F73B4D71C33A7C200C78204 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF72C4FA48E6ECD13385F6A0 /* Pods-GoldDiggerUITests.release.xcconfig */;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				INFOPLIST_FILE = GoldDiggerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TO.GoldDiggerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_TARGET_NAME = GoldDigger;
 				USES_XCTRUNNER = YES;
 			};
